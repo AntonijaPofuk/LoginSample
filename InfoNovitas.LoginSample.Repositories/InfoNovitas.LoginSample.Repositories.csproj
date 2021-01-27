@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{93BEB157-F12A-43D3-8ACD-2B4164F71801}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>InfoNovitas.LoginSample.Repositories</RootNamespace>
+    <AssemblyName>InfoNovitas.LoginSample.Repositories</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Authors\AuthorRepository.cs" />
+    <Compile Include="DatabaseModel\Author.cs">
+      <DependentUpon>LoginSampleModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DatabaseModel\Author_Get_Result.cs">
+      <DependentUpon>LoginSampleModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DatabaseModel\LoginSampleModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LoginSampleModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DatabaseModel\LoginSampleModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LoginSampleModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DatabaseModel\LoginSampleModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LoginSampleModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DatabaseModel\Role.cs">
+      <DependentUpon>LoginSampleModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DatabaseModel\User.cs">
+      <DependentUpon>LoginSampleModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DatabaseModel\UserClaim.cs">
+      <DependentUpon>LoginSampleModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DatabaseModel\UserInfo.cs">
+      <DependentUpon>LoginSampleModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DatabaseModel\UserLogin.cs">
+      <DependentUpon>LoginSampleModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DatabaseModel\UserRegistrationToken.cs">
+      <DependentUpon>LoginSampleModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IRepository.cs" />
+    <Compile Include="Mapping\AuthorsMapper.cs" />
+    <Compile Include="Mapping\UserInfoMapper.cs" />
+    <Compile Include="Users\UserRepository.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="DatabaseModel\LoginSampleModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>LoginSampleModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DatabaseModel\LoginSampleModel.edmx.diagram">
+      <DependentUpon>LoginSampleModel.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DatabaseModel\LoginSampleModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>LoginSampleModel.edmx</DependentUpon>
+      <LastGenOutput>LoginSampleModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DatabaseModel\LoginSampleModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>LoginSampleModel.edmx</DependentUpon>
+      <LastGenOutput>LoginSampleModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\InfoNovitas.LoginSample.Model\InfoNovitas.LoginSample.Model.csproj">
+      <Project>{ec8cff69-0849-46cf-83c0-259ca79df738}</Project>
+      <Name>InfoNovitas.LoginSample.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,15 @@
+﻿<h1 class="page-header">Uređivanje: {{author.firstName}} {{author.lastName}}</h1>
+
+<form role="form" ng-submit="updateAuthor()" name="updateAuthorForm" id="updateAuthorForm" novalidate>
+    <div class="form-group" ng-class="{'has-error':updateAuthorForm.firstName.$invalid && updateAuthorForm.firstName.$dirty}">
+        <label>Ime:</label>
+        <input class="form-control" ng-model="author.firstName" name="firstName" required />
+        <p class="help-block" ng-show="updateAuthorForm.firstName.$invalid && updateAuthorForm.firstName.$dirty">Ime je obavezno.</p>
+    </div>
+    <div class="form-group" ng-class="{'has-error':updateAuthorForm.lastName.$invalid && updateAuthorForm.lastName.$dirty}">
+        <label>Prezime:</label>
+        <input class="form-control" ng-model="author.lastName" name="lastName" required />
+        <p class="help-block" ng-show="updateAuthorForm.lastName.$invalid && updateAuthorForm.lastName.$dirty">Ime je obavezno.</p>
+    </div>
+    <button type="submit" class="btn btn-primary" ng-disabled="updateAuthorForm.$invalid">Spremi</button>
+</form>

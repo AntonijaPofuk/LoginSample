@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FE27AD6A-D7A7-497B-AF37-5F18F851D2C0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>InfoNovitas.LoginSample.Services</RootNamespace>
+    <AssemblyName>InfoNovitas.LoginSample.Services</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4">
+      <HintPath>..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.Net4.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CommonProfile.cs" />
+    <Compile Include="IAuthorService.cs" />
+    <Compile Include="Impl\AuthorService.cs" />
+    <Compile Include="Impl\UserService.cs" />
+    <Compile Include="IUserService.cs" />
+    <Compile Include="Mapping\AuthorMapper.cs" />
+    <Compile Include="Mapping\UserMapper.cs" />
+    <Compile Include="Messaging\Authors\DeleteAuthorRequest.cs" />
+    <Compile Include="Messaging\Authors\DeleteAuthorResponse.cs" />
+    <Compile Include="Messaging\Authors\GetAllAuthorsRequest.cs" />
+    <Compile Include="Messaging\Authors\GetAllAuthorsResponse.cs" />
+    <Compile Include="Messaging\Authors\GetAuthorRequest.cs" />
+    <Compile Include="Messaging\Authors\GetAuthorResponse.cs" />
+    <Compile Include="Messaging\Authors\SaveAuthorRequest.cs" />
+    <Compile Include="Messaging\Authors\SaveAuthorResponse.cs" />
+    <Compile Include="Messaging\Views\Authors\Author.cs" />
+    <Compile Include="Messaging\GenericErrorMessageFactory.cs" />
+    <Compile Include="Messaging\LoginSampleRequestBase.cs" />
+    <Compile Include="Messaging\LoginSampleResponseBase.cs" />
+    <Compile Include="Messaging\Users\GetUserInfoRequest.cs" />
+    <Compile Include="Messaging\Users\GetUserInfoResponse.cs" />
+    <Compile Include="Messaging\Views\Users\UserInfo.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\InfoNovitas.LoginSample.Model\InfoNovitas.LoginSample.Model.csproj">
+      <Project>{ec8cff69-0849-46cf-83c0-259ca79df738}</Project>
+      <Name>InfoNovitas.LoginSample.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\InfoNovitas.LoginSample.Repositories\InfoNovitas.LoginSample.Repositories.csproj">
+      <Project>{93beb157-f12a-43d3-8acd-2b4164f71801}</Project>
+      <Name>InfoNovitas.LoginSample.Repositories</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets" Condition="Exists('..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
