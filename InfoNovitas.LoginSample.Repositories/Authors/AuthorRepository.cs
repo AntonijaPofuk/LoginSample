@@ -25,8 +25,10 @@ namespace InfoNovitas.LoginSample.Repositories.Authors
             using (var context = new IdentityExDbEntities())
             {
                 List<Model.Authors.Author> list = new List<Model.Authors.Author>();
-                list.Add(context.Author_Get(2).SingleOrDefault().MapToModel());
-                return list;
+                foreach (var item in context.Authors_Get().ToList()) {
+                    list.Add(item.MapToModels());
+                }
+                 return list;
             }
         }
 

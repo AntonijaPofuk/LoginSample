@@ -32,7 +32,7 @@ namespace InfoNovitas.LoginSample.Repositories.Mapping
             };
         }
 
-        public static Author MapToModel(this AuthorAllData_Get_Result dbResult)
+        public static Author MapToModels(this Authors_Get_Result dbResult)
         {
             if (dbResult == null)
                 return null;
@@ -55,7 +55,8 @@ namespace InfoNovitas.LoginSample.Repositories.Mapping
             };
         }
 
-        public static Model.Authors.Author MapToAuthor(this DatabaseModel.Author model)
+
+      public static Model.Authors.Author MapToAuthor(this DatabaseModel.Author model)
         {
             if (model == null)
                 return null;
