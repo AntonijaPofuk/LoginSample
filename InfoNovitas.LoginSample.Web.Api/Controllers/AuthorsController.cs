@@ -15,7 +15,7 @@ namespace InfoNovitas.LoginSample.Web.Api.Controllers
     public class AuthorsController : ApiController
     {
 
-        private IAuthorService _authorService;
+        private IAuthorService _authorService; //injection
 
         public AuthorsController(IAuthorService authorService)
         {

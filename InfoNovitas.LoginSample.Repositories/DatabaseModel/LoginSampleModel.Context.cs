@@ -43,5 +43,19 @@ namespace InfoNovitas.LoginSample.Repositories.DatabaseModel
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Author_Get_Result>("Author_Get", idParameter);
         }
+    
+        public virtual ObjectResult<Authors_Get_Result> Authors_Get()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Authors_Get_Result>("Authors_Get");
+        }
+    
+        public virtual ObjectResult<AuthorAllData_Get_Result> AuthorAllData_Get(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<AuthorAllData_Get_Result>("AuthorAllData_Get", idParameter);
+        }
     }
 }

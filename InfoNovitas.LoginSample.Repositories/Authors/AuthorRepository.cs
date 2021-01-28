@@ -3,6 +3,8 @@ using InfoNovitas.LoginSample.Repositories.DatabaseModel;
 using InfoNovitas.LoginSample.Repositories.Mapping;
 using System.Collections.Generic;
 using System.Linq;
+using InfoNovitas.LoginSample.Model.Authors;
+
 
 namespace InfoNovitas.LoginSample.Repositories.Authors
 {
@@ -20,7 +22,12 @@ namespace InfoNovitas.LoginSample.Repositories.Authors
 
         public List<Model.Authors.Author> FindAll()
         {
-            return null;
+            using (var context = new IdentityExDbEntities())
+            {
+                List<Model.Authors.Author> list = new List<Model.Authors.Author>();
+                list.Add(context.Author_Get(2).SingleOrDefault().MapToModel());
+                return list;
+            }
         }
 
         public Model.Authors.Author FindBy(int key)
