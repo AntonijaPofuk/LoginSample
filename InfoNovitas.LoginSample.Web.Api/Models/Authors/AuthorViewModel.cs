@@ -11,6 +11,8 @@ namespace InfoNovitas.LoginSample.Web.Api.Models.Authors
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string FullName { get; set; }
+        public string Note { get; set; }
+        public string Description { get; set; }
         public DateTimeOffset? LastModified { get; set; }
         public UserViewModel UserLastModified { get; set; }
     }

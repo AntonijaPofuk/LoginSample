@@ -190,7 +190,7 @@
         <Function Name="Author_Get" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="Author.Get">
           <Parameter Name="Id" Type="int" Mode="In" />
         </Function>
-        <Function Name="AuthorAllData_Get" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="AuthorAllData.Get">
+        <Function Name="AuthorData_Get" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="AuthorData.Get">
           <Parameter Name="id" Type="int" Mode="In" />
         </Function>
         <Function Name="Authors_Get" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="Authors.Get" />
@@ -286,6 +286,9 @@
           <FunctionImport Name="Authors_Get" ReturnType="Collection(IdentityExDbModel.Authors_Get_Result)" />
           <FunctionImport Name="AuthorAllData_Get" ReturnType="Collection(IdentityExDbModel.AuthorAllData_Get_Result)">
           <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="AuthorData_Get" ReturnType="Collection(IdentityExDbModel.AuthorData_Get_Result)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="Author_Get_Result">
@@ -474,6 +477,26 @@
           <Property Type="DateTimeOffset" Name="LastModified" Nullable="true" />
           <Property Type="Int32" Name="UserLastModified" Nullable="true" />
         </ComplexType>
+        <ComplexType Name="AuthorData_Get_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="Boolean" Name="Active" Nullable="false" />
+          <Property Type="DateTimeOffset" Name="DateCreated" Nullable="false" />
+          <Property Type="Int32" Name="UserCreated" Nullable="true" />
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="LastName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Description" Nullable="true" MaxLength="2000" />
+          <Property Type="String" Name="Note" Nullable="true" MaxLength="50" />
+          <Property Type="DateTimeOffset" Name="LastModified" Nullable="true" />
+          <Property Type="Int32" Name="UserLastModified" Nullable="true" />
+          <Property Type="String" Name="UserCreatedFirstName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="UserCreatedLastName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="UserCreatedFullName" Nullable="true" MaxLength="101" />
+          <Property Type="String" Name="UserCreatedEmail" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="UserLastModifiedFirstName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="UserLastModifiedLastName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="UserLastModifiedFullName" Nullable="true" MaxLength="101" />
+          <Property Type="String" Name="UserLastModifiedEmail" Nullable="true" MaxLength="100" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -607,9 +630,9 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="AuthorAllData_Get" FunctionName="IdentityExDbModel.Store.AuthorAllData_Get">
+          <FunctionImportMapping FunctionImportName="AuthorData_Get" FunctionName="IdentityExDbModel.Store.AuthorData_Get">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="IdentityExDbModel.AuthorAllData_Get_Result">
+              <ComplexTypeMapping TypeName="IdentityExDbModel.AuthorData_Get_Result">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Active" ColumnName="Active" />
                 <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
@@ -620,6 +643,14 @@
                 <ScalarProperty Name="Note" ColumnName="Note" />
                 <ScalarProperty Name="LastModified" ColumnName="LastModified" />
                 <ScalarProperty Name="UserLastModified" ColumnName="UserLastModified" />
+                <ScalarProperty Name="UserCreatedFirstName" ColumnName="UserCreatedFirstName" />
+                <ScalarProperty Name="UserCreatedLastName" ColumnName="UserCreatedLastName" />
+                <ScalarProperty Name="UserCreatedFullName" ColumnName="UserCreatedFullName" />
+                <ScalarProperty Name="UserCreatedEmail" ColumnName="UserCreatedEmail" />
+                <ScalarProperty Name="UserLastModifiedFirstName" ColumnName="UserLastModifiedFirstName" />
+                <ScalarProperty Name="UserLastModifiedLastName" ColumnName="UserLastModifiedLastName" />
+                <ScalarProperty Name="UserLastModifiedFullName" ColumnName="UserLastModifiedFullName" />
+                <ScalarProperty Name="UserLastModifiedEmail" ColumnName="UserLastModifiedEmail" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

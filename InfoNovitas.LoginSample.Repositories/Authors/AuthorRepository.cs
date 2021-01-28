@@ -34,7 +34,9 @@ namespace InfoNovitas.LoginSample.Repositories.Authors
         {
             using (var context = new IdentityExDbEntities())
             {
-                return context.Author_Get(key).SingleOrDefault().MapToModel();
+                //return context.Author_Get(key).SingleOrDefault().MapToModel();
+                return context.AuthorData_Get(key).SingleOrDefault().MapToModel();
+
             }
         }
 

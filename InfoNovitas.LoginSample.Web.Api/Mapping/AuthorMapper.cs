@@ -17,6 +17,8 @@ namespace InfoNovitas.LoginSample.Web.Api.Mapping
                 DateCreated = view.DateCreated,
                 UserCreated = view.UserCreated.MapToViewModel(),
                 FirstName = view.FirstName,
+                Note = view.Note,
+                Description = view.Description,
                 LastName = view.LastName,
                 LastModified = view.LastModified,
                 UserLastModified = view.UserLastModified.MapToViewModel()
@@ -33,6 +35,8 @@ namespace InfoNovitas.LoginSample.Web.Api.Mapping
                 DateCreated = viewModel.DateCreated,
                 UserCreated = viewModel.UserCreated.MapToView(),
                 FirstName = viewModel.FirstName,
+                Note = viewModel.Note,
+                Description = viewModel.Description,
                 LastName = viewModel.LastName,
                 LastModified = viewModel.LastModified,
                 UserLastModified = viewModel.UserLastModified.MapToView()

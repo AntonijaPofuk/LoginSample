@@ -7,7 +7,7 @@ namespace InfoNovitas.LoginSample.Repositories.Mapping
 {
     public static class AuthorsMapper
     {
-        public static Author MapToModel(this Author_Get_Result dbResult)
+        public static Author MapToModel(this AuthorData_Get_Result dbResult)
         {
             if (dbResult == null)
                 return null;
@@ -20,14 +20,16 @@ namespace InfoNovitas.LoginSample.Repositories.Mapping
                 {
                     Id = dbResult.UserCreated.Value,
                     FullName = dbResult.UserCreatedFullName
+
                 } : null,
                 FirstName = dbResult.FirstName,
                 LastName = dbResult.LastName,
+                Note = dbResult.Note,
+                Description = dbResult.Description,
                 LastModified = dbResult.LastModified,
                 UserLastModified = dbResult.UserLastModified.HasValue ? new Model.Users.UserInfo()
                 {
-                    Id = dbResult.UserLastModified.GetValueOrDefault(),
-                    FullName = dbResult.UserLastModifiedFullName
+                    Id = dbResult.UserLastModified.GetValueOrDefault()
                 } : null,
             };
         }
@@ -41,9 +43,12 @@ namespace InfoNovitas.LoginSample.Repositories.Mapping
                 Id = dbResult.Id,
                 DateCreated = dbResult.DateCreated,
                 Active = dbResult.Active,
+                Note = dbResult.Note,
+                Description = dbResult.Description,
                 UserCreated = dbResult.UserCreated.HasValue ? new Model.Users.UserInfo()
                 {
                     Id = dbResult.UserCreated.Value
+             
                 } : null,
                 FirstName = dbResult.FirstName,
                 LastName = dbResult.LastName              

@@ -55,6 +55,9 @@
     <Compile Include="DatabaseModel\AuthorAllData_Get_Result.cs">
       <DependentUpon>LoginSampleModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DatabaseModel\AuthorData_Get_Result.cs">
+      <DependentUpon>LoginSampleModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DatabaseModel\Authors_Get_Result.cs">
       <DependentUpon>LoginSampleModel.tt</DependentUpon>
     </Compile>
