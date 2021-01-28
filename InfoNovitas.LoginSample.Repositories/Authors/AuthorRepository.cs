@@ -3,8 +3,6 @@ using InfoNovitas.LoginSample.Repositories.DatabaseModel;
 using InfoNovitas.LoginSample.Repositories.Mapping;
 using System.Collections.Generic;
 using System.Linq;
-using InfoNovitas.LoginSample.Model.Authors;
-
 
 namespace InfoNovitas.LoginSample.Repositories.Authors
 {

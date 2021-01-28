@@ -46,35 +46,8 @@ namespace InfoNovitas.LoginSample.Repositories.Mapping
                     Id = dbResult.UserCreated.Value
                 } : null,
                 FirstName = dbResult.FirstName,
-                LastName = dbResult.LastName,
-                LastModified = dbResult.LastModified,
-                UserLastModified = dbResult.UserLastModified.HasValue ? new Model.Users.UserInfo()
-                {
-                    Id = dbResult.UserLastModified.GetValueOrDefault()
-                } : null,
+                LastName = dbResult.LastName              
             };
-        }
-
-
-      public static Model.Authors.Author MapToAuthor(this DatabaseModel.Author model)
-        {
-            if (model == null)
-                return null;
-            return new Model.Authors.Author()
-            {
-                Id = model.Id,
-                FirstName = model.FirstName,
-                LastName = model.LastName
-            };
-        }
-
-        public static List<Model.Authors.Author> MapToModels(this List<DatabaseModel.Author> item)
-        {
-            var result = new List<Author>();
-            if (item == null)
-                return null;
-            result.AddRange(item.Select(u => u.MapToAuthor()));
-            return result;
-        }
+        }    
     }
 }
