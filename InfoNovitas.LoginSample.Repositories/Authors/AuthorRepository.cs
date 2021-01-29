@@ -1,6 +1,7 @@
 ﻿using InfoNovitas.LoginSample.Model.Authors;
 using InfoNovitas.LoginSample.Repositories.DatabaseModel;
 using InfoNovitas.LoginSample.Repositories.Mapping;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -14,8 +15,22 @@ namespace InfoNovitas.LoginSample.Repositories.Authors
         }
 
         public bool Delete(Model.Authors.Author item)
-        {
-            throw new System.NotImplementedException();
+        {           
+            try
+            {
+                using (var context = new IdentityExDbEntities())
+                {
+                    //context.Authors.Remove(item);
+                    //context.SaveChanges();
+                    Console.WriteLine("DELETING" + item.FirstName+""+item.LastName);
+                    return true;   
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"The exception is: '{e}'");
+                return false;
+            }
         }
 
         public List<Model.Authors.Author> FindAll()

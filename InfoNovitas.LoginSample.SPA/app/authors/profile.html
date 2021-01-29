@@ -16,6 +16,8 @@
     <label for="authornote">Note:</label>
     <input name="authornote" type="text" class="form-control" id="authornote" placeholder="Enter note" [required="string" ] value={{author.note}} />
     <label for="userCreated">Kreirao:</label>
-    <input readonly name="usercreated" type="text" class="form-control" id="usercreated"  [required="string" ] value={{author.userCreated.fullName}} />
+    <input readonly name="usercreated" type="text" class="form-control" id="usercreated" [required="string" ] value={{author.userCreated.fullName}} />
+    <label for="userCreated">Ažurirao:</label>
+    <input readonly name="usercreated" type="text" class="form-control" id="usercreated" [required="string" ] value={{author.userLastModified.fullName}}/>
 
 </form>
