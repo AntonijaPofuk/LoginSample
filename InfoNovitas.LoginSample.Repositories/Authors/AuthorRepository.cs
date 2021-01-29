@@ -11,7 +11,10 @@ namespace InfoNovitas.LoginSample.Repositories.Authors
     {
         public int Add(Model.Authors.Author item)
         {
-            throw new System.NotImplementedException();
+            using (var context = new IdentityExDbEntities())
+            {
+                return context.Author_Insert(item.FirstName, item.LastName, item.Note, item.Description, item.UserCreated?.Id);
+            }
         }
 
         public bool Delete(Model.Authors.Author item)
@@ -47,7 +50,6 @@ namespace InfoNovitas.LoginSample.Repositories.Authors
         {
             using (var context = new IdentityExDbEntities())
             {
-                //return context.Author_Get(key).SingleOrDefault().MapToModel();
                 return context.AuthorData_Get(key).SingleOrDefault().MapToModel();
 
             }
