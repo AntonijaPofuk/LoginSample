@@ -20,9 +20,12 @@ namespace InfoNovitas.LoginSample.Repositories.Authors
             {
                 using (var context = new IdentityExDbEntities())
                 {
-                    //context.Authors.Remove(item);
+                    context.Author_Delete(item.Id, item.UserLastModified?.Id);
+
                     //context.SaveChanges();
-                    Console.WriteLine("DELETING" + item.FirstName+""+item.LastName);
+                    //item = context.AuthorData_Get(2).SingleOrDefault().MapToModel();
+                    //context.Authors.Remove(item);
+                    //Console.WriteLine("DELETING" + item.FirstName+""+item.LastName);
                     return true;   
                 }
             }

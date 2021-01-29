@@ -190,6 +190,10 @@
         <Function Name="Author_Get" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="Author.Get">
           <Parameter Name="Id" Type="int" Mode="In" />
         </Function>
+        <Function Name="Author_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <Parameter Name="UserLastModified" Type="int" Mode="In" />
+        </Function>
         <Function Name="AuthorData_Get" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="AuthorData.Get">
           <Parameter Name="id" Type="int" Mode="In" />
         </Function>
@@ -288,7 +292,11 @@
           <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="AuthorData_Get" ReturnType="Collection(IdentityExDbModel.AuthorData_Get_Result)">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Author_Delete">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="UserLastModified" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="Author_Get_Result">
@@ -654,6 +662,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Author_Delete" FunctionName="IdentityExDbModel.Store.Author_Delete" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
