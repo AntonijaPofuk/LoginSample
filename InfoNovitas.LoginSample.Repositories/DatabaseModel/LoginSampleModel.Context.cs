@@ -79,5 +79,34 @@ namespace InfoNovitas.LoginSample.Repositories.DatabaseModel
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Author_Delete", idParameter, userLastModifiedParameter);
         }
+    
+        public virtual int Author_Save(Nullable<int> id, string firstName, string lastName, string note, string description, Nullable<int> userLastModified)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            var firstNameParameter = firstName != null ?
+                new ObjectParameter("FirstName", firstName) :
+                new ObjectParameter("FirstName", typeof(string));
+    
+            var lastNameParameter = lastName != null ?
+                new ObjectParameter("LastName", lastName) :
+                new ObjectParameter("LastName", typeof(string));
+    
+            var noteParameter = note != null ?
+                new ObjectParameter("Note", note) :
+                new ObjectParameter("Note", typeof(string));
+    
+            var descriptionParameter = description != null ?
+                new ObjectParameter("Description", description) :
+                new ObjectParameter("Description", typeof(string));
+    
+            var userLastModifiedParameter = userLastModified.HasValue ?
+                new ObjectParameter("UserLastModified", userLastModified) :
+                new ObjectParameter("UserLastModified", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Author_Save", idParameter, firstNameParameter, lastNameParameter, noteParameter, descriptionParameter, userLastModifiedParameter);
+        }
     }
 }

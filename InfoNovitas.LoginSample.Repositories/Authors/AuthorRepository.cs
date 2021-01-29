@@ -20,12 +20,7 @@ namespace InfoNovitas.LoginSample.Repositories.Authors
             {
                 using (var context = new IdentityExDbEntities())
                 {
-                    context.Author_Delete(item.Id, item.UserLastModified?.Id);
-
-                    //context.SaveChanges();
-                    //item = context.AuthorData_Get(2).SingleOrDefault().MapToModel();
-                    //context.Authors.Remove(item);
-                    //Console.WriteLine("DELETING" + item.FirstName+""+item.LastName);
+                    context.Author_Delete(item.Id, item.UserLastModified?.Id);                   
                     return true;   
                 }
             }
@@ -60,7 +55,12 @@ namespace InfoNovitas.LoginSample.Repositories.Authors
 
         public Model.Authors.Author Save(Model.Authors.Author item)
         {
-            throw new System.NotImplementedException();
+
+            using (var context = new IdentityExDbEntities())
+            {
+                context.Author_Save(item.Id, item.FirstName, item.LastName, item.Note, item.Description, item.UserLastModified?.Id);
+                return item;
+            }
         }
     }
 }
