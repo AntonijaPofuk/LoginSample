@@ -1,4 +1,4 @@
-﻿var loginApp = angular.module('LoginApp', ['common', 'LocalStorageModule', 'oc.lazyLoad','ui.router']);
+﻿var loginApp = angular.module('LoginApp', ['common', 'LocalStorageModule', 'oc.lazyLoad', 'ui.router', 'kendo.directives']);
 
 loginApp.run([
     'authService', '$http', '$window', '$q', '$rootScope', function (authService, $http, $window, $q, $rootScope) {
@@ -60,7 +60,6 @@ loginApp.config([
                             ]
                         });
                     }
-
                 }
             })
          .state('authorsOverview', {
@@ -77,7 +76,6 @@ loginApp.config([
                          ]
                      });
                  }
-
              }
          })
             .state('authorProfile', {
@@ -94,7 +92,23 @@ loginApp.config([
                             ]
                         });
                     }
+                }
+            })
 
+            .state('userProfile', {
+                url: "/user/:id",
+                controller: "LayoutCtrl",
+                templateUrl: "app/user/userProfile.html",
+                resolve: {
+                    loginRequired: loginRequired,
+                    authors: function ($ocLazyLoad) {
+                        return $ocLazyLoad.load({
+                            name: "user",
+                            files: [
+                                "app/user/usersModule.js"
+                            ]
+                        });
+                    }
                 }
             })
          .state('newAuthor', {
@@ -112,7 +126,6 @@ loginApp.config([
                          ]
                      });
                  }
-
              }
          })
          .state('updateAuthor', {
@@ -130,11 +143,8 @@ loginApp.config([
                          ]
                      });
                  }
-
              }
-         });
-        
-
+         });       
         $locationProvider.html5Mode(true);
     }
 ]);
@@ -145,6 +155,9 @@ loginApp.controller('LayoutCtrl', [
         userInfoService.getInfo().then(function (result) {
             $scope.loggedUser = result.data;
             $scope.loggedUser.fullName = $scope.loggedUser.firstname + ' ' + $scope.loggedUser.lastname;
+            $scope.loggedUser.email = $scope.loggedUser.email;
+            $scope.loggedUser.firstName = $scope.loggedUser.firstname;
+            $scope.loggedUser.lastName = $scope.loggedUser.lastname;
         }, function(result) {
         });
 

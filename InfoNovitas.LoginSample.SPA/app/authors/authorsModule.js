@@ -1,4 +1,4 @@
-﻿angular.module('authors', [])
+﻿angular.module('authors', ['kendo.directives'])
     .service('authorsSvc', function ($http) {
         this.getAuthors = function () {
             return $http.get(serviceBase + "api/authors");
@@ -16,12 +16,14 @@
             return $http.put(serviceBase + "api/authors/" + id, author);
         }
     })
+       
+
     .controller('authorsOverviewCtrl', function ($scope, authorsSvc, $state) {
         authorsSvc.getAuthors().then(function (result) {
             $scope.authors = result.data.authors;
         }, function () { });
 
-        $scope.delete = function (id) {
+       $scope.delete = function (id) {
             authorsSvc.deleteAuthor(id).then(function () {
                 $state.reload();
             });

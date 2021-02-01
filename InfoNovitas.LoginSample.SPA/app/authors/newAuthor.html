@@ -1,11 +1,21 @@
-﻿<h1 class="page-header">Novi autor</h1>
-
+﻿<p>
+    Hello <a href="https://docs.telerik.com/kendo-ui/intro/first-steps">Kendo UI for jQuery</a>!
+    This is version <strong id="kendoVersion"></strong>.
+</p>
+<script>
+        $(function() {
+            $("#kendoVersion").text(kendo.version);
+        });
+</script>
+<h1 class="page-header">Novi autor</h1>
 <form role="form" ng-submit="addNewAuthor()" name="newAuthorForm" id="newAuthorForm" novalidate>
     <div class="form-group" ng-class="{'has-error':newAuthorForm.firstName.$invalid && newAuthorForm.firstName.$dirty}">
         <label>Ime:</label>
         <input class="form-control" ng-model="author.firstName" name="firstName" required />
         <p class="help-block" ng-show="newAuthorForm.firstName.$invalid && newAuthorForm.firstName.$dirty">Ime je obavezno.</p>
     </div>
+
+
     <div class="form-group" ng-class="{'has-error':newAuthorForm.lastName.$invalid && newAuthorForm.lastName.$dirty}">
         <label>Prezime:</label>
         <input class="form-control" ng-model="author.lastName" name="lastName" required />
@@ -21,3 +31,4 @@
     </div>
     <button type="submit" class="btn btn-primary" ng-disabled="newAuthorForm.$invalid">Spremi</button>
 </form>
+

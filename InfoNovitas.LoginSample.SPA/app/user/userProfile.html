@@ -1,0 +1,9 @@
+﻿<h1 class="page-header">{{loggedUser.fullName}}</h1>
+<form class="form-group" name="authorForm">
+    <label for="userfirstname">Ime:</label>
+    <input required name="userfirstname" type="text" class="form-control" id="userfirstname" [required="string" ] value={{loggedUser.firstName}} />
+    <label for="userlastname">Prezime:</label>
+    <input required name="userlastname" type="text" class="form-control" id="userlastname" [required="string" ] value={{loggedUser.lastName}} />
+    <label for="userlastname">Email:</label>
+    <input required name="useremail" type="text" class="form-control" id="useremail" [required="string" ] value={{loggedUser.email}} />
+</form>
