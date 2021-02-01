@@ -97,6 +97,9 @@
     <Compile Include="DatabaseModel\UserRegistrationToken.cs">
       <DependentUpon>LoginSampleModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DatabaseModel\Users_Get_Result.cs">
+      <DependentUpon>LoginSampleModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="IRepository.cs" />
     <Compile Include="Mapping\AuthorsMapper.cs" />
     <Compile Include="Mapping\UserInfoMapper.cs" />

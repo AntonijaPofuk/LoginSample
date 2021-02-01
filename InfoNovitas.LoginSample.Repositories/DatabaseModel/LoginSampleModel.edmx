@@ -219,6 +219,7 @@
           <Parameter Name="LastName" Type="nvarchar" Mode="In" />
           <Parameter Name="Email" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="Users_Get" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="Users.Get" />
         <EntityContainer Name="IdentityExDbModelStoreContainer">
           <EntitySet Name="Author" EntityType="Self.Author" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
@@ -340,6 +341,7 @@
             <Parameter Name="LastName" Mode="In" Type="String" />
             <Parameter Name="Email" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="Users_Get" ReturnType="Collection(IdentityExDbModel.Users_Get_Result)" />
         </EntityContainer>
         <ComplexType Name="Author_Get_Result">
           <Property Type="Int32" Name="Id" Nullable="false" />
@@ -547,6 +549,12 @@
           <Property Type="String" Name="UserLastModifiedFullName" Nullable="true" MaxLength="101" />
           <Property Type="String" Name="UserLastModifiedEmail" Nullable="true" MaxLength="100" />
         </ComplexType>
+        <ComplexType Name="Users_Get_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="LastName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="100" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -708,6 +716,16 @@
           <FunctionImportMapping FunctionImportName="Author_Save" FunctionName="IdentityExDbModel.Store.Author_Save" />
           <FunctionImportMapping FunctionImportName="Author_Insert" FunctionName="IdentityExDbModel.Store.Author_Insert" />
           <FunctionImportMapping FunctionImportName="User_Save" FunctionName="IdentityExDbModel.Store.User_Save" />
+          <FunctionImportMapping FunctionImportName="Users_Get" FunctionName="IdentityExDbModel.Store.Users_Get">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="IdentityExDbModel.Users_Get_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -78,6 +78,24 @@ loginApp.config([
                  }
              }
          })
+
+            .state('usersOverview', {
+                url: "/users",
+                controller: "usersOverviewCtrl",
+                templateUrl: "app/user/usersOverview.html",
+                resolve: {
+                    loginRequired: loginRequired,
+                    authors: function ($ocLazyLoad) {
+                        return $ocLazyLoad.load({
+                            name: "users",
+                            files: [
+                                "app/user/usersModule.js"
+                            ]
+                        });
+                    }
+                }
+
+            })
             .state('authorProfile', {
                 url: "/authors/:id",
                 controller: "authorProfileCtrl",
@@ -162,9 +180,9 @@ loginApp.controller('LayoutCtrl', [
         }, function(result) {
         });
 
-        $scope.updateUser = function () {
-            console.log("UPDATE" + $scope.loggedUser.id);      
-        };
+        //$scope.updateUser = function () {
+        //    console.log("UPDATE" + $scope.loggedUser.id);      
+        //};
 
         $scope.logOut = function () {
             authService.logOut();

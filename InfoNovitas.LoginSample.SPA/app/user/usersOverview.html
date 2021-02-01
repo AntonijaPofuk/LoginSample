@@ -1,0 +1,33 @@
+﻿<script>
+    console.log("LOCALHOST: " + serviceBase + "api/users");   
+</script>
+<h1 class="page-header">Pregled korisnika</h1>
+<dvi class="container">
+    <div class="row">
+        <table class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Ime</th>
+                    <th>Prezime</th>
+                    <th>Email</th>                  
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="user in users">
+                    <td><b>{{user.id}}</b></td>
+                    <td>{{user.firstName}}</td>
+                    <td>{{user.lastName}}</td>
+                    <td>{{user.email}}</td>                  
+                    <td>
+                        <button type="button" class="btn btn-primary" ng-click="profile(user.id)">Profil</button>
+                        <button type="button" class="btn btn-default" ng-click="edit(user.id)">Uredi</button>
+                        <button type="button" class="btn btn-default" ng-click="delete(user.id)">Obriši</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</dvi>
+
