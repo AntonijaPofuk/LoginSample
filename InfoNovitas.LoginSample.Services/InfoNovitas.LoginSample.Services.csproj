@@ -60,6 +60,8 @@
     <Compile Include="Messaging\Authors\GetAuthorResponse.cs" />
     <Compile Include="Messaging\Authors\SaveAuthorRequest.cs" />
     <Compile Include="Messaging\Authors\SaveAuthorResponse.cs" />
+    <Compile Include="Messaging\Users\SaveUserRequest.cs" />
+    <Compile Include="Messaging\Users\SaveUserResponse.cs" />
     <Compile Include="Messaging\Views\Authors\Author.cs" />
     <Compile Include="Messaging\GenericErrorMessageFactory.cs" />
     <Compile Include="Messaging\LoginSampleRequestBase.cs" />

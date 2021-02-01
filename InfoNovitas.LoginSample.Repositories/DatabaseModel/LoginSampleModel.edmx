@@ -213,6 +213,12 @@
           <Parameter Name="id" Type="int" Mode="In" />
         </Function>
         <Function Name="Authors_Get" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="Authors.Get" />
+        <Function Name="User_Save" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <Parameter Name="FirstName" Type="nvarchar" Mode="In" />
+          <Parameter Name="LastName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Email" Type="nvarchar" Mode="In" />
+        </Function>
         <EntityContainer Name="IdentityExDbModelStoreContainer">
           <EntitySet Name="Author" EntityType="Self.Author" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
@@ -327,6 +333,12 @@
             <Parameter Name="Note" Mode="In" Type="String" />
             <Parameter Name="Description" Mode="In" Type="String" />
             <Parameter Name="UserCreated" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="User_Save">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="FirstName" Mode="In" Type="String" />
+            <Parameter Name="LastName" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="Author_Get_Result">
@@ -695,6 +707,7 @@
           <FunctionImportMapping FunctionImportName="Author_Delete" FunctionName="IdentityExDbModel.Store.Author_Delete" />
           <FunctionImportMapping FunctionImportName="Author_Save" FunctionName="IdentityExDbModel.Store.Author_Save" />
           <FunctionImportMapping FunctionImportName="Author_Insert" FunctionName="IdentityExDbModel.Store.Author_Insert" />
+          <FunctionImportMapping FunctionImportName="User_Save" FunctionName="IdentityExDbModel.Store.User_Save" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

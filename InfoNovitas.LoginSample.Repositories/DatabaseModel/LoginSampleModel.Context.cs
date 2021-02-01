@@ -133,5 +133,26 @@ namespace InfoNovitas.LoginSample.Repositories.DatabaseModel
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Author_Insert", firstNameParameter, lastNameParameter, noteParameter, descriptionParameter, userCreatedParameter);
         }
+    
+        public virtual int User_Save(Nullable<int> id, string firstName, string lastName, string email)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            var firstNameParameter = firstName != null ?
+                new ObjectParameter("FirstName", firstName) :
+                new ObjectParameter("FirstName", typeof(string));
+    
+            var lastNameParameter = lastName != null ?
+                new ObjectParameter("LastName", lastName) :
+                new ObjectParameter("LastName", typeof(string));
+    
+            var emailParameter = email != null ?
+                new ObjectParameter("Email", email) :
+                new ObjectParameter("Email", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("User_Save", idParameter, firstNameParameter, lastNameParameter, emailParameter);
+        }
     }
 }

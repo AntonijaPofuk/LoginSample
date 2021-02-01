@@ -8,6 +8,7 @@ using InfoNovitas.LoginSample.Services.Mapping;
 using InfoNovitas.LoginSample.Services.Messaging.Users;
 using InfoNovitas.LoginSample.Services.Messaging.Views.Users;
 using InfoNovitas.LoginSample.Services.Messaging;
+using InfoNovitas.LoginSample.Services.Messaging.Authors;
 
 namespace InfoNovitas.LoginSample.Services.Impl
 {
@@ -52,6 +53,41 @@ namespace InfoNovitas.LoginSample.Services.Impl
             {
                 return null;
             }
+        }
+
+        public SaveUserResponse SaveUser(SaveUserRequest request)
+        {
+            var response = new SaveUserResponse()
+            {
+                Request = request,
+                ResponseToken = Guid.NewGuid()
+            };
+
+            try
+            {
+                if (request.User?.Id == 0)
+                {
+                    response.User = request.User;
+                    response.User.Id = _repository.Add(request.User.MapToModel());
+                    response.Success = true;
+                }
+                else if (request.User?.Id > 0)
+                {
+                    response.User = _repository.Save(request.User.MapToModel()).MapToView();
+                    response.Success = true;
+                }
+                else
+                {
+                    response.Success = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                response.Message = ex.Message;
+                response.Success = false;
+            }
+
+            return response;
         }
     }
 }

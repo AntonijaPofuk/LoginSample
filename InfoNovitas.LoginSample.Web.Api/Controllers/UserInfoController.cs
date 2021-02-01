@@ -6,6 +6,7 @@ using InfoNovitas.LoginSample.Web.Api.Models.Users;
 using InfoNovitas.LoginSample.Services.Messaging.Users;
 using System;
 using InfoNovitas.LoginSample.Web.Api.Mapping;
+using InfoNovitas.LoginSample.Services.Messaging.Authors;
 
 namespace InfoNovitas.LoginSample.Web.Api.Controllers
 {
@@ -55,5 +56,56 @@ namespace InfoNovitas.LoginSample.Web.Api.Controllers
 
             return BadRequest(response.Message);
         }
+
+
+        [HttpPost]
+        [Route("")]
+        public IHttpActionResult Post(UserViewModel user)
+        {
+            var loggedUserId = HttpContext.Current.GetOwinContext().GetUserId();
+
+          
+
+            var request = new SaveUserRequest()
+            {
+                RequestToken = Guid.NewGuid(),
+                UserId = loggedUserId,
+                User = user.MapToView()
+            };
+
+            var usersResponse = _userService.SaveUser(request);
+
+            if (!usersResponse.Success)
+            {
+                return BadRequest(usersResponse.Message);
+            }
+
+            return Ok(user = usersResponse.User.MapToViewModel());
+        }
+
+        [HttpPut]
+        [Route("{id}")]
+        public IHttpActionResult Put(UserViewModel user)
+        {
+            var loggedUserId = HttpContext.Current.GetOwinContext().GetUserId();
+
+            var request = new SaveUserRequest()
+            {
+                RequestToken = Guid.NewGuid(),
+                UserId = loggedUserId,
+                User = user.MapToView()
+            };
+
+            var usersResponse = _userService.SaveUser(request);
+
+            if (!usersResponse.Success)
+            {
+                return BadRequest(usersResponse.Message);
+            }
+
+            return Ok(user = usersResponse.User.MapToViewModel());
+        }
+
+
     }
 }

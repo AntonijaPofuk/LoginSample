@@ -96,12 +96,12 @@ loginApp.config([
             })
 
             .state('userProfile', {
-                url: "/user/:id",
+                url: "/user/",
                 controller: "LayoutCtrl",
-                templateUrl: "app/user/userProfile.html",
+                templateUrl: "app/user/updateUser.html",
                 resolve: {
                     loginRequired: loginRequired,
-                    authors: function ($ocLazyLoad) {
+                    user: function ($ocLazyLoad) {
                         return $ocLazyLoad.load({
                             name: "user",
                             files: [
@@ -158,8 +158,13 @@ loginApp.controller('LayoutCtrl', [
             $scope.loggedUser.email = $scope.loggedUser.email;
             $scope.loggedUser.firstName = $scope.loggedUser.firstname;
             $scope.loggedUser.lastName = $scope.loggedUser.lastname;
+            $scope.loggedUser.id = $scope.loggedUser.id;
         }, function(result) {
         });
+
+        $scope.updateUser = function () {
+            console.log("UPDATE" + $scope.loggedUser.id);      
+        };
 
         $scope.logOut = function () {
             authService.logOut();

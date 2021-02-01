@@ -37,7 +37,11 @@ namespace InfoNovitas.LoginSample.Repositories.Users
 
         public UserInfo Save(UserInfo item)
         {
-            throw new NotImplementedException();
+            using (var context = new Context.IdentityExDbEntities())
+            {
+                context.User_Save(item.Id, item.FirstName, item.LastName, item.Email);
+                return item;
+            }
         }
     }
 }
