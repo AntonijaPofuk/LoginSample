@@ -18,6 +18,10 @@
         <AssociationConnector Association="IdentityExDbModel.FK_UserLogin_User" />
         <AssociationConnector Association="IdentityExDbModel.Relationship6" />
         <AssociationConnector Association="IdentityExDbModel.UserRole" />
+        <EntityTypeShape EntityType="IdentityExDbModel.Book" Width="1.5" PointX="11.375" PointY="4.375" />
+        <AssociationConnector Association="IdentityExDbModel.FK_Books_Author" />
+        <AssociationConnector Association="IdentityExDbModel.FK_Books_UserInfo" />
+        <AssociationConnector Association="IdentityExDbModel.FK_Books_UserInfo1" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

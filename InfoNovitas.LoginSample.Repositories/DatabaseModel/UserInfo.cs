@@ -18,6 +18,8 @@ namespace InfoNovitas.LoginSample.Repositories.DatabaseModel
         {
             this.Authors = new HashSet<Author>();
             this.Authors1 = new HashSet<Author>();
+            this.Books = new HashSet<Book>();
+            this.Books1 = new HashSet<Book>();
         }
     
         public int Id { get; set; }
@@ -28,5 +30,7 @@ namespace InfoNovitas.LoginSample.Repositories.DatabaseModel
         public virtual ICollection<Author> Authors { get; set; }
         public virtual ICollection<Author> Authors1 { get; set; }
         public virtual User User { get; set; }
+        public virtual ICollection<Book> Books { get; set; }
+        public virtual ICollection<Book> Books1 { get; set; }
     }
 }

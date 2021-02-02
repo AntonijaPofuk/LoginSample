@@ -12,26 +12,20 @@ namespace InfoNovitas.LoginSample.Repositories.DatabaseModel
     using System;
     using System.Collections.Generic;
     
-    public partial class Author
+    public partial class Book
     {
-        public Author()
-        {
-            this.Books = new HashSet<Book>();
-        }
-    
         public int Id { get; set; }
         public bool Active { get; set; }
         public System.DateTimeOffset DateCreated { get; set; }
         public Nullable<int> UserCreated { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public string Title { get; set; }
+        public int Author { get; set; }
         public string Description { get; set; }
-        public string Note { get; set; }
         public Nullable<System.DateTimeOffset> LastModified { get; set; }
         public Nullable<int> UserLastModified { get; set; }
     
+        public virtual Author Author1 { get; set; }
         public virtual UserInfo UserInfo { get; set; }
         public virtual UserInfo UserInfo1 { get; set; }
-        public virtual ICollection<Book> Books { get; set; }
     }
 }

@@ -64,6 +64,9 @@
     <Compile Include="DatabaseModel\Author_Get_Result.cs">
       <DependentUpon>LoginSampleModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DatabaseModel\Book.cs">
+      <DependentUpon>LoginSampleModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DatabaseModel\LoginSampleModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

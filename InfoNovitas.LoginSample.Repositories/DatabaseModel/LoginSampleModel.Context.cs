@@ -34,6 +34,7 @@ namespace InfoNovitas.LoginSample.Repositories.DatabaseModel
         public virtual DbSet<UserClaim> UserClaims { get; set; }
         public virtual DbSet<UserLogin> UserLogins { get; set; }
         public virtual DbSet<UserRegistrationToken> UserRegistrationTokens { get; set; }
+        public virtual DbSet<Book> Books { get; set; }
     
         public virtual ObjectResult<Author_Get_Result> Author_Get(Nullable<int> id)
         {

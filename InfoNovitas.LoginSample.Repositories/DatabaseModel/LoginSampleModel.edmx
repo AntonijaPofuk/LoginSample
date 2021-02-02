@@ -20,6 +20,20 @@
           <Property Name="LastModified" Type="datetimeoffset" Precision="0" />
           <Property Name="UserLastModified" Type="int" />
         </EntityType>
+        <EntityType Name="Books">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="DateCreated" Type="datetimeoffset" Precision="7" Nullable="false" />
+          <Property Name="UserCreated" Type="int" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Author" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="2000" />
+          <Property Name="LastModified" Type="datetimeoffset" Precision="7" />
+          <Property Name="UserLastModified" Type="int" />
+        </EntityType>
         <EntityType Name="Role">
           <Key>
             <PropertyRef Name="Id" />
@@ -115,6 +129,42 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Author">
+              <PropertyRef Name="UserLastModified" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Books_Author">
+          <End Role="Author" Type="Self.Author" Multiplicity="1" />
+          <End Role="Books" Type="Self.Books" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Author">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Books">
+              <PropertyRef Name="Author" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Books_UserInfo">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="0..1" />
+          <End Role="Books" Type="Self.Books" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Books">
+              <PropertyRef Name="UserCreated" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Books_UserInfo1">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="0..1" />
+          <End Role="Books" Type="Self.Books" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Books">
               <PropertyRef Name="UserLastModified" />
             </Dependent>
           </ReferentialConstraint>
@@ -222,6 +272,7 @@
         <Function Name="Users_Get" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="Users.Get" />
         <EntityContainer Name="IdentityExDbModelStoreContainer">
           <EntitySet Name="Author" EntityType="Self.Author" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Books" EntityType="Self.Books" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserClaim" EntityType="Self.UserClaim" Schema="dbo" store:Type="Tables" />
@@ -236,6 +287,18 @@
           <AssociationSet Name="FK_Author_UserInfo1" Association="Self.FK_Author_UserInfo1">
             <End Role="UserInfo" EntitySet="UserInfo" />
             <End Role="Author" EntitySet="Author" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Books_Author" Association="Self.FK_Books_Author">
+            <End Role="Author" EntitySet="Author" />
+            <End Role="Books" EntitySet="Books" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Books_UserInfo" Association="Self.FK_Books_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="Books" EntitySet="Books" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Books_UserInfo1" Association="Self.FK_Books_UserInfo1">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="Books" EntitySet="Books" />
           </AssociationSet>
           <AssociationSet Name="FK_UserClaim_User" Association="Self.FK_UserClaim_User">
             <End Role="User" EntitySet="User" />
@@ -273,6 +336,8 @@
           <NavigationProperty Name="Authors" Relationship="IdentityExDbModel.FK_Author_UserInfo" FromRole="UserInfo" ToRole="Author" />
           <NavigationProperty Name="Authors1" Relationship="IdentityExDbModel.FK_Author_UserInfo1" FromRole="UserInfo" ToRole="Author" />
           <NavigationProperty Name="User" Relationship="IdentityExDbModel.Relationship6" FromRole="UserInfo" ToRole="User" />
+          <NavigationProperty Name="Books" Relationship="IdentityExDbModel.FK_Books_UserInfo" FromRole="UserInfo" ToRole="Book" />
+          <NavigationProperty Name="Books1" Relationship="IdentityExDbModel.FK_Books_UserInfo1" FromRole="UserInfo" ToRole="Book" />
           </EntityType>
         <EntityContainer Name="IdentityExDbEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="UserInfoes" EntityType="Self.UserInfo" />
@@ -342,6 +407,19 @@
             <Parameter Name="Email" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="Users_Get" ReturnType="Collection(IdentityExDbModel.Users_Get_Result)" />
+          <EntitySet Name="Books" EntityType="IdentityExDbModel.Book" />
+          <AssociationSet Name="FK_Books_Author" Association="IdentityExDbModel.FK_Books_Author">
+            <End Role="Author" EntitySet="Authors" />
+            <End Role="Book" EntitySet="Books" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Books_UserInfo" Association="IdentityExDbModel.FK_Books_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfoes" />
+            <End Role="Book" EntitySet="Books" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Books_UserInfo1" Association="IdentityExDbModel.FK_Books_UserInfo1">
+            <End Role="UserInfo" EntitySet="UserInfoes" />
+            <End Role="Book" EntitySet="Books" />
+          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="Author_Get_Result">
           <Property Type="Int32" Name="Id" Nullable="false" />
@@ -371,6 +449,7 @@
           <Property Name="UserLastModified" Type="Int32" />
           <NavigationProperty Name="UserInfo" Relationship="IdentityExDbModel.FK_Author_UserInfo" FromRole="Author" ToRole="UserInfo" />
           <NavigationProperty Name="UserInfo1" Relationship="IdentityExDbModel.FK_Author_UserInfo1" FromRole="Author" ToRole="UserInfo" />
+          <NavigationProperty Name="Books" Relationship="IdentityExDbModel.FK_Books_Author" FromRole="Author" ToRole="Book" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -555,6 +634,59 @@
           <Property Type="String" Name="LastName" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="Email" Nullable="false" MaxLength="100" />
         </ComplexType>
+        <EntityType Name="Book">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="UserCreated" Type="Int32" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Author" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="LastModified" Type="DateTimeOffset" Precision="7" />
+          <Property Name="UserLastModified" Type="Int32" />
+          <NavigationProperty Name="Author1" Relationship="IdentityExDbModel.FK_Books_Author" FromRole="Book" ToRole="Author" />
+          <NavigationProperty Name="UserInfo" Relationship="IdentityExDbModel.FK_Books_UserInfo" FromRole="Book" ToRole="UserInfo" />
+          <NavigationProperty Name="UserInfo1" Relationship="IdentityExDbModel.FK_Books_UserInfo1" FromRole="Book" ToRole="UserInfo" />
+        </EntityType>
+        <Association Name="FK_Books_Author">
+          <End Type="IdentityExDbModel.Author" Role="Author" Multiplicity="1" />
+          <End Type="IdentityExDbModel.Book" Role="Book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Author">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Book">
+              <PropertyRef Name="Author" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Books_UserInfo">
+          <End Type="IdentityExDbModel.UserInfo" Role="UserInfo" Multiplicity="0..1" />
+          <End Type="IdentityExDbModel.Book" Role="Book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Book">
+              <PropertyRef Name="UserCreated" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Books_UserInfo1">
+          <End Type="IdentityExDbModel.UserInfo" Role="UserInfo" Multiplicity="0..1" />
+          <End Type="IdentityExDbModel.Book" Role="Book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Book">
+              <PropertyRef Name="UserLastModified" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -726,6 +858,21 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="Books">
+            <EntityTypeMapping TypeName="IdentityExDbModel.Book">
+              <MappingFragment StoreEntitySet="Books">
+                <ScalarProperty Name="UserLastModified" ColumnName="UserLastModified" />
+                <ScalarProperty Name="LastModified" ColumnName="LastModified" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Author" ColumnName="Author" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="UserCreated" ColumnName="UserCreated" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
