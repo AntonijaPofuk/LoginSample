@@ -1,4 +1,6 @@
-﻿using System;
+﻿using InfoNovitas.LoginSample.Model.Users;
+using InfoNovitas.LoginSample.Repositories.DatabaseModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -29,5 +31,20 @@ namespace InfoNovitas.LoginSample.Repositories.Mapping
             result.AddRange(items.Select(u => u.MapToUserInfo()));
             return result;
         }
+      
+
+        public static Model.Users.UserInfo MapToModels(this Users_Get_Result dbResult)
+        {
+            if (dbResult == null)
+                return null;
+            return new Model.Users.UserInfo()
+            {
+                Id = dbResult.Id,
+                FirstName = dbResult.FirstName,
+                LastName = dbResult.LastName,
+                Email = dbResult.Email
+            };
+        }
+
     }
 }

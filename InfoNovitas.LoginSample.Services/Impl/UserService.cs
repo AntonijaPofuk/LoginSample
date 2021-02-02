@@ -9,6 +9,7 @@ using InfoNovitas.LoginSample.Services.Messaging.Users;
 using InfoNovitas.LoginSample.Services.Messaging.Views.Users;
 using InfoNovitas.LoginSample.Services.Messaging;
 using InfoNovitas.LoginSample.Services.Messaging.Authors;
+using InfoNovitas.LoginSample.Services.Messaging.User;
 
 namespace InfoNovitas.LoginSample.Services.Impl
 {
@@ -19,6 +20,19 @@ namespace InfoNovitas.LoginSample.Services.Impl
         public UserService(IUserRepository repository)
         {
             _repository = repository;
+        }
+
+       
+        public UserInfo GetUserInfo(int userId)
+        {
+            try
+            {
+                return _repository.FindBy(userId).MapToView();
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
 
         public GetUserInfoResponse GetUserInfo(GetUserInfoRequest request)
@@ -34,7 +48,7 @@ namespace InfoNovitas.LoginSample.Services.Impl
                 response.User = _repository.FindBy(request.UserId).MapToView();
                 response.Success = true;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 response.Success = false;
                 response.Message = GenericErrorMessageFactory.GeneralError;
@@ -42,19 +56,6 @@ namespace InfoNovitas.LoginSample.Services.Impl
 
             return response;
         }
-
-        public UserInfo GetUserInfo(int userId)
-        {
-            try
-            {
-                return _repository.FindBy(userId).MapToView();
-            }
-            catch (Exception ex)
-            {
-                return null;
-            }
-        }
-
         public SaveUserResponse SaveUser(SaveUserRequest request)
         {
             var response = new SaveUserResponse()
@@ -80,6 +81,28 @@ namespace InfoNovitas.LoginSample.Services.Impl
                 {
                     response.Success = false;
                 }
+            }
+            catch (Exception ex)
+            {
+                response.Message = ex.Message;
+                response.Success = false;
+            }
+
+            return response;
+        }
+
+        GetAllUsersResponse IUserService.GetAllUsers(GetAllUsersRequest request)
+        {
+            var response = new GetAllUsersResponse()
+            {
+                Request = request,
+                ResponseToken = Guid.NewGuid()
+            };
+
+            try
+            {
+                response.Users = _repository.FindAll().MapToViews();
+                response.Success = true;
             }
             catch (Exception ex)
             {

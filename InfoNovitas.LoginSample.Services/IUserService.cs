@@ -1,4 +1,5 @@
 ﻿using InfoNovitas.LoginSample.Services.Messaging.Authors;
+using InfoNovitas.LoginSample.Services.Messaging.User;
 using InfoNovitas.LoginSample.Services.Messaging.Users;
 using InfoNovitas.LoginSample.Services.Messaging.Views.Users;
 
@@ -9,6 +10,8 @@ namespace InfoNovitas.LoginSample.Services
         UserInfo GetUserInfo(int userId);
         GetUserInfoResponse GetUserInfo(GetUserInfoRequest request);
         SaveUserResponse SaveUser(SaveUserRequest request);
+        GetAllUsersResponse GetAllUsers(GetAllUsersRequest request);
+
 
     }
 }

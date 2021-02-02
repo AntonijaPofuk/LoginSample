@@ -7,10 +7,13 @@ using InfoNovitas.LoginSample.Services.Messaging.Users;
 using System;
 using InfoNovitas.LoginSample.Web.Api.Mapping;
 using InfoNovitas.LoginSample.Services.Messaging.Authors;
+using InfoNovitas.LoginSample.Services.Messaging.User;
 
 namespace InfoNovitas.LoginSample.Web.Api.Controllers
 {
     [Authorize]
+    [RoutePrefix("api/users")]
+
     public class UserInfoController : ApiController
     {
         private IUserService _userService;
@@ -18,21 +21,6 @@ namespace InfoNovitas.LoginSample.Web.Api.Controllers
         public UserInfoController(IUserService userService)
         {
             _userService = userService;
-        }
-
-
-        [HttpGet]
-        public IHttpActionResult Get(int id)
-        {
-            var user = _userService.GetUserInfo(id);
-            var result = new UserViewModel()
-            {
-                Id = user.Id,
-                Lastname = user.LastName,
-                Firstname = user.FirstName,
-                Email = user.Email
-            };
-            return Ok(result);
         }
 
         [HttpGet]
@@ -57,6 +45,49 @@ namespace InfoNovitas.LoginSample.Web.Api.Controllers
             return BadRequest(response.Message);
         }
 
+        [HttpGet]
+        [Route("")]
+        public IHttpActionResult GetAllUsers()
+        {
+            var loggedUserId = HttpContext.Current.GetOwinContext().GetUserId();
+
+            var request = new GetAllUsersRequest()
+            {
+                RequestToken = Guid.NewGuid(),
+                UserId = loggedUserId
+            };
+
+            var usersResponse = _userService.GetAllUsers(request);
+
+            if (!usersResponse.Success)
+            {
+                return BadRequest(usersResponse.Message);
+            }
+
+            return Ok(
+                new
+                {
+                    authors = usersResponse.Users.MapToViewModels()
+                }
+            );
+        }
+
+
+        [HttpGet]
+        public IHttpActionResult Get(int id)
+        {
+            var user = _userService.GetUserInfo(id);
+            var result = new UserViewModel()
+            {
+                Id = user.Id,
+                Lastname = user.LastName,
+                Firstname = user.FirstName,
+                Email = user.Email
+            };
+            return Ok(result);
+        }
+
+      
 
         [HttpPost]
         [Route("")]

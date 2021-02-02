@@ -78,6 +78,41 @@ loginApp.config([
                  }
              }
          })
+
+            .state('usersOverview', {
+                url: "/users",
+                controller: "usersOverviewCtrl",
+                templateUrl: "app/user/usersOverview.html",
+                resolve: {
+                    loginRequired: loginRequired,
+                    authors: function ($ocLazyLoad) {
+                        return $ocLazyLoad.load({
+                            name: "users",
+                            files: [
+                                "app/user/usersModule.js"
+                            ]
+                        });
+                    }
+                }
+            })
+
+             //.state('usersOverview', {
+            //    url: "/users",
+            //    controller: "usersOverviewCtrl",
+            //    templateUrl: "app/user/usersOverview.html",
+            //    resolve: {
+            //        loginRequired: loginRequired,
+            //        authors: function ($ocLazyLoad) {
+            //            return $ocLazyLoad.load({
+            //                name: "users",
+            //                files: [
+            //                    "app/user/usersModule.js"
+            //                ]
+            //            });
+            //        }
+            //    }
+            //})
+
             .state('authorProfile', {
                 url: "/authors/:id",
                 controller: "authorProfileCtrl",

@@ -154,5 +154,10 @@ namespace InfoNovitas.LoginSample.Repositories.DatabaseModel
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("User_Save", idParameter, firstNameParameter, lastNameParameter, emailParameter);
         }
+    
+        public virtual ObjectResult<Users_Get_Result> Users_Get()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Users_Get_Result>("Users_Get");
+        }
     }
 }

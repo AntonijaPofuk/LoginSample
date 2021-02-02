@@ -36,5 +36,14 @@ namespace InfoNovitas.LoginSample.Web.Api.Mapping
                 FullName = viewModel.FullName
             };
         }
+
+        public static List<UserViewModel> MapToViewModels(this IEnumerable<UserInfo> views)
+        {
+            var result = new List<UserViewModel>();
+            if (views == null)
+                return result;
+            result.AddRange(views.Select(item => item.MapToViewModel()));
+            return result;
+        }
     }
 }
