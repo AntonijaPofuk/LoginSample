@@ -47,6 +47,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Books\Book.cs" />
+    <Compile Include="Books\IBookRepository.cs" />
     <Compile Include="Authors\Author.cs" />
     <Compile Include="Authors\IAuthorRepository.cs" />
     <Compile Include="IRepository.cs" />

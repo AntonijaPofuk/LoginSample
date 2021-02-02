@@ -46,12 +46,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommonProfile.cs" />
+    <Compile Include="IBookService.cs" />
     <Compile Include="IAuthorService.cs" />
     <Compile Include="Impl\AuthorService.cs" />
+    <Compile Include="Impl\BookService.cs" />
     <Compile Include="Impl\UserService.cs" />
     <Compile Include="IUserService.cs" />
+    <Compile Include="Mapping\BookMapper.cs" />
     <Compile Include="Mapping\AuthorMapper.cs" />
     <Compile Include="Mapping\UserMapper.cs" />
+    <Compile Include="Messaging\Books\GetAllBooksRequest.cs" />
+    <Compile Include="Messaging\Books\GetAllBooksResponse.cs" />
     <Compile Include="Messaging\Authors\DeleteAuthorRequest.cs" />
     <Compile Include="Messaging\Authors\DeleteAuthorResponse.cs" />
     <Compile Include="Messaging\Authors\GetAllAuthorsRequest.cs" />
@@ -64,6 +69,7 @@
     <Compile Include="Messaging\Users\GetAllUsersResponse.cs" />
     <Compile Include="Messaging\Users\SaveUserRequest.cs" />
     <Compile Include="Messaging\Users\SaveUserResponse.cs" />
+    <Compile Include="Messaging\Views\Books\Book.cs" />
     <Compile Include="Messaging\Views\Authors\Author.cs" />
     <Compile Include="Messaging\GenericErrorMessageFactory.cs" />
     <Compile Include="Messaging\LoginSampleRequestBase.cs" />

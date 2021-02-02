@@ -10,9 +10,8 @@
 namespace InfoNovitas.LoginSample.Repositories.DatabaseModel
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Book
+    public partial class BookData_Get_Result
     {
         public int Id { get; set; }
         public bool Active { get; set; }
@@ -22,10 +21,15 @@ namespace InfoNovitas.LoginSample.Repositories.DatabaseModel
         public int Author { get; set; }
         public string Description { get; set; }
         public Nullable<System.DateTimeOffset> LastModified { get; set; }
-        public Nullable<int> UserLastModified { get; set; }   
-        
-        public virtual Author Author1 { get; set; }
-        public virtual UserInfo UserInfo { get; set; }
-        public virtual UserInfo UserInfo1 { get; set; }
+        public Nullable<int> UserLastModified { get; set; }
+        public string UserCreatedFirstName { get; set; }
+        public string UserCreatedLastName { get; set; }
+        public string UserCreatedFullName { get; set; }
+        public string UserCreatedEmail { get; set; }
+        public string UserLastModifiedFirstName { get; set; }
+        public string UserLastModifiedLastName { get; set; }
+        public string UserLastModifiedFullName { get; set; }
+        public string UserLastModifiedEmail { get; set; }
+        public string AuthorFullName { get; set; }
     }
 }

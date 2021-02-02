@@ -78,6 +78,22 @@ loginApp.config([
                  }
              }
          })
+            .state('booksOverview', {
+                url: "/books",
+                controller: "booksOverviewCtrl",
+                templateUrl: "app/books/booksOverview.html",
+                resolve: {
+                    loginRequired: loginRequired,
+                    authors: function ($ocLazyLoad) {
+                        return $ocLazyLoad.load({
+                            name: "books",
+                            files: [
+                                "app/books/booksModule.js"
+                            ]
+                        });
+                    }
+                }
+            })
 
             .state('usersOverview', {
                 url: "/users",

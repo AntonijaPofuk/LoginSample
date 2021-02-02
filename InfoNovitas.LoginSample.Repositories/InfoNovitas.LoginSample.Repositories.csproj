@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Books\BookRepository.cs" />
     <Compile Include="Authors\AuthorRepository.cs" />
     <Compile Include="DatabaseModel\Author.cs">
       <DependentUpon>LoginSampleModel.tt</DependentUpon>
@@ -65,6 +66,12 @@
       <DependentUpon>LoginSampleModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DatabaseModel\Book.cs">
+      <DependentUpon>LoginSampleModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DatabaseModel\BookData_Get_Result.cs">
+      <DependentUpon>LoginSampleModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DatabaseModel\Books_Get_Result.cs">
       <DependentUpon>LoginSampleModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DatabaseModel\LoginSampleModel.Context.cs">
@@ -104,6 +111,7 @@
       <DependentUpon>LoginSampleModel.tt</DependentUpon>
     </Compile>
     <Compile Include="IRepository.cs" />
+    <Compile Include="Mapping\BooksMapper.cs" />
     <Compile Include="Mapping\AuthorsMapper.cs" />
     <Compile Include="Mapping\UserInfoMapper.cs" />
     <Compile Include="Users\UserRepository.cs" />
