@@ -43,6 +43,7 @@ namespace InfoNovitas.LoginSample.Web.Api.Mapping
             };
         }
 
+       
         public static List<AuthorViewModel> MapToViewModels(this IEnumerable<Author> views)
         {
             var result = new List<AuthorViewModel>();

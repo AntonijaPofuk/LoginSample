@@ -13,12 +13,12 @@ namespace InfoNovitas.LoginSample.Repositories.Books
         public int Add(Book item)
         {
             throw new NotImplementedException();
-        }
+            }
 
         public bool Delete(Book item)
-        {
+                {
             throw new NotImplementedException();
-        }
+            }
 
         public List<Model.Books.Book> FindAll()
         {
@@ -39,7 +39,7 @@ namespace InfoNovitas.LoginSample.Repositories.Books
         }
 
         public Book Save(Book item)
-        {
+            {
             throw new NotImplementedException();
         }
     }

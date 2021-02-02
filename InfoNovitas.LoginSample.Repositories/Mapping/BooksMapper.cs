@@ -15,9 +15,9 @@ namespace InfoNovitas.LoginSample.Repositories.Mapping
             {
                 Id = dbResult.Id,
                 Title = dbResult.Title,
-                Active = dbResult.Active,    
+                Active = dbResult.Active,
                 Description = dbResult.Description
-            
+
             };
         }
 

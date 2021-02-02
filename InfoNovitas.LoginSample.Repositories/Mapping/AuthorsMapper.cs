@@ -1,6 +1,4 @@
 ﻿using InfoNovitas.LoginSample.Repositories.DatabaseModel;
-using System.Collections.Generic;
-using System.Linq;
 using Author = InfoNovitas.LoginSample.Model.Authors.Author;
 
 namespace InfoNovitas.LoginSample.Repositories.Mapping
