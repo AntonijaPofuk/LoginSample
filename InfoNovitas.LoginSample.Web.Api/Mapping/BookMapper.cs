@@ -1,52 +1,51 @@
-﻿using InfoNovitas.LoginSample.Services.Messaging.Views.Authors;
-using InfoNovitas.LoginSample.Web.Api.Models.Authors;
+﻿using InfoNovitas.LoginSample.Services.Messaging.Views;
+using InfoNovitas.LoginSample.Services.Messaging.Views.Books;
+using InfoNovitas.LoginSample.Web.Api.Models;
+using InfoNovitas.LoginSample.Web.Api.Models.Books;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace InfoNovitas.LoginSample.Web.Api.Mapping
 {
-    public static class AuthorMapper
+    public static class BookMapper
     {
-        public static AuthorViewModel MapToViewModel(this Author view)
+        public static BookViewModel MapToViewModel(this Book view)
         {
             if (view == null)
                 return null;
-            return new AuthorViewModel()
+            return new BookViewModel()
             {
                 Id = view.Id,
                 DateCreated = view.DateCreated,
                 UserCreated = view.UserCreated.MapToViewModel(),
-                FirstName = view.FirstName,
-                Note = view.Note,
+                Title = view.Title,
+                Author = view.Author.MapToViewModel(),
                 Description = view.Description,
-                LastName = view.LastName,
                 LastModified = view.LastModified,
                 UserLastModified = view.UserLastModified.MapToViewModel()
             };
         }
 
-        public static Author MapToView(this AuthorViewModel viewModel)
+        public static Book MapToView(this BookViewModel viewModel)
         {
             if (viewModel == null)
                 return null;
-            return new Author()
+            return new Book()
             {
                 Id = viewModel.Id,
                 DateCreated = viewModel.DateCreated,
                 UserCreated = viewModel.UserCreated.MapToView(),
-                FirstName = viewModel.FirstName,
-                Note = viewModel.Note,
+                Title = viewModel.Title,
+                Author = viewModel.Author.MapToView(),
                 Description = viewModel.Description,
-                LastName = viewModel.LastName,
                 LastModified = viewModel.LastModified,
                 UserLastModified = viewModel.UserLastModified.MapToView()
             };
         }
 
-       
-        public static List<AuthorViewModel> MapToViewModels(this IEnumerable<Author> views)
+        public static List<BookViewModel> MapToViewModels(this IEnumerable<Book> views)
         {
-            var result = new List<AuthorViewModel>();
+            var result = new List<BookViewModel>();
             if (views == null)
                 return result;
             result.AddRange(views.Select(item => item.MapToViewModel()));

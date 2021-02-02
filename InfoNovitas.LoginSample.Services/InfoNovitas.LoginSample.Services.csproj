@@ -46,12 +46,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommonProfile.cs" />
+    <Compile Include="IBookService.cs" />
     <Compile Include="IAuthorService.cs" />
     <Compile Include="Impl\AuthorService.cs" />
     <Compile Include="Impl\UserService.cs" />
     <Compile Include="IUserService.cs" />
+    <Compile Include="Mapping\BookMapper.cs" />
     <Compile Include="Mapping\AuthorMapper.cs" />
     <Compile Include="Mapping\UserMapper.cs" />
+    <Compile Include="Messaging\Books\DeleteBookRequest.cs" />
+    <Compile Include="Messaging\Books\DeleteBookResponse.cs" />
+    <Compile Include="Messaging\Books\GetAllBooksRequest.cs" />
+    <Compile Include="Messaging\Books\GetAllBooksResponse.cs" />
+    <Compile Include="Messaging\Books\GetBookRequest.cs" />
+    <Compile Include="Messaging\Books\GetBookResponse.cs" />
+    <Compile Include="Messaging\Books\SaveBookRequest.cs" />
+    <Compile Include="Messaging\Books\SaveBookResponse.cs" />
     <Compile Include="Messaging\Authors\DeleteAuthorRequest.cs" />
     <Compile Include="Messaging\Authors\DeleteAuthorResponse.cs" />
     <Compile Include="Messaging\Authors\GetAllAuthorsRequest.cs" />
@@ -70,6 +80,7 @@
     <Compile Include="Messaging\LoginSampleResponseBase.cs" />
     <Compile Include="Messaging\Users\GetUserInfoRequest.cs" />
     <Compile Include="Messaging\Users\GetUserInfoResponse.cs" />
+    <Compile Include="Messaging\Views\Books\Book.cs" />
     <Compile Include="Messaging\Views\Users\UserInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

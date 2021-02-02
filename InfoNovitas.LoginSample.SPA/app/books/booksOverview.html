@@ -1,0 +1,39 @@
+﻿<script>
+    console.log("LOCALHOST: " + serviceBase + "api/books");   
+</script>
+<h1 class="page-header">Pregled autora</h1>
+<div class="container">
+    <div class="row">
+        <table class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Ime</th>
+                    <th>Prezime</th>
+                    <th>Bilješka</th>
+                    <th>Opis</th>
+                    <th>Datum kreiranja</th>
+                    <th>Kreirao</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="book in books">
+                    <td><b>{{book.id}}</b></td>
+                    <td>{{book.firstName}}</td>
+                    <td>{{book.lastName}}</td>
+                    <td>{{book.note}}</td>
+                    <td>{{book.description}}</td>
+                    <td>{{book.dateCreated|date:'dd.MM.yyyy. HH:mm'}}</td>
+                    <td>{{book.userCreated.id}}</td>
+                    <td>
+                        <button type="button" class="btn btn-primary" ng-click="profile(book.id)">Profil</button>
+                        <button type="button" class="btn btn-default" ng-click="edit(book.id)">Uredi</button>
+                        <button type="button" class="btn btn-default" ng-click="delete(book.id)">Obriši</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+

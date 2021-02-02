@@ -122,6 +122,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.js" />
+    <Content Include="app\books\booksModule.js" />
+    <Content Include="app\books\booksOverview.html" />
+    <Content Include="app\books\newBook.html" />
+    <Content Include="app\books\profile.html" />
+    <Content Include="app\books\updateBook.html" />
     <Content Include="app\authors\profile.html" />
     <Content Include="app\common\commonModule.js" />
     <Content Include="app\common\services\authServices.js" />

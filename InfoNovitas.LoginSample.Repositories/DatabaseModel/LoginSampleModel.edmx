@@ -263,6 +263,27 @@
           <Parameter Name="id" Type="int" Mode="In" />
         </Function>
         <Function Name="Authors_Get" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="Authors.Get" />
+        <Function Name="Book_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <Parameter Name="UserLastModified" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Book_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Title" Type="nvarchar" Mode="In" />
+          <Parameter Name="Author" Type="int" Mode="In" />
+          <Parameter Name="Description" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserCreated" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Book_Save" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <Parameter Name="Title" Type="nvarchar" Mode="In" />
+          <Parameter Name="Author" Type="int" Mode="In" />
+          <Parameter Name="Description" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserLastModified" Type="int" Mode="In" />
+        </Function>
+        <Function Name="BookData_Get" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="BookData.Get">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Books_Get" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="Books.Get" />
         <Function Name="User_Save" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Id" Type="int" Mode="In" />
           <Parameter Name="FirstName" Type="nvarchar" Mode="In" />
@@ -420,6 +441,27 @@
             <End Role="UserInfo" EntitySet="UserInfoes" />
             <End Role="Book" EntitySet="Books" />
           </AssociationSet>
+          <FunctionImport Name="Book_Delete">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="UserLastModified" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Book_Insert">
+            <Parameter Name="Title" Mode="In" Type="String" />
+            <Parameter Name="Author" Mode="In" Type="Int32" />
+            <Parameter Name="Description" Mode="In" Type="String" />
+            <Parameter Name="UserCreated" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Book_Save">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="Title" Mode="In" Type="String" />
+            <Parameter Name="Author" Mode="In" Type="Int32" />
+            <Parameter Name="Description" Mode="In" Type="String" />
+            <Parameter Name="UserLastModified" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="BookData_Get" ReturnType="Collection(IdentityExDbModel.BookData_Get_Result)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Books_Get" ReturnType="Collection(IdentityExDbModel.Books_Get_Result)" />
         </EntityContainer>
         <ComplexType Name="Author_Get_Result">
           <Property Type="Int32" Name="Id" Nullable="false" />
@@ -687,6 +729,44 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="BookData_Get_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="Boolean" Name="Active" Nullable="false" />
+          <Property Type="DateTimeOffset" Name="DateCreated" Nullable="false" />
+          <Property Type="Int32" Name="UserCreated" Nullable="true" />
+          <Property Type="String" Name="Title" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="Author" Nullable="false" />
+          <Property Type="String" Name="Description" Nullable="true" MaxLength="2000" />
+          <Property Type="DateTimeOffset" Name="LastModified" Nullable="true" />
+          <Property Type="Int32" Name="UserLastModified" Nullable="true" />
+          <Property Type="String" Name="UserCreatedFirstName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="UserCreatedLastName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="UserCreatedFullName" Nullable="true" MaxLength="101" />
+          <Property Type="String" Name="UserCreatedEmail" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="UserLastModifiedFirstName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="UserLastModifiedLastName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="UserLastModifiedFullName" Nullable="true" MaxLength="101" />
+          <Property Type="String" Name="UserLastModifiedEmail" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="AuthorFullName" Nullable="true" MaxLength="101" />
+        </ComplexType>
+        <ComplexType Name="Books_Get_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="Boolean" Name="Active" Nullable="false" />
+          <Property Type="DateTimeOffset" Name="DateCreated" Nullable="false" />
+          <Property Type="Int32" Name="UserCreated" Nullable="true" />
+          <Property Type="String" Name="Title" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="Author" Nullable="false" />
+          <Property Type="String" Name="Description" Nullable="true" MaxLength="2000" />
+          <Property Type="DateTimeOffset" Name="LastModified" Nullable="true" />
+          <Property Type="Int32" Name="UserLastModified" Nullable="true" />
+          <Property Type="String" Name="Description1" Nullable="true" MaxLength="2000" />
+          <Property Type="String" Name="UserCreatedEmail" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="UserCreatedFirstName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="UserCreatedLastName" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="UserCreatedId" Nullable="true" />
+          <Property Type="String" Name="UserCreatedFullName" Nullable="true" MaxLength="101" />
+          <Property Type="String" Name="AuthorFullName" Nullable="true" MaxLength="101" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -873,6 +953,55 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Book_Delete" FunctionName="IdentityExDbModel.Store.Book_Delete" />
+          <FunctionImportMapping FunctionImportName="Book_Insert" FunctionName="IdentityExDbModel.Store.Book_Insert" />
+          <FunctionImportMapping FunctionImportName="Book_Save" FunctionName="IdentityExDbModel.Store.Book_Save" />
+          <FunctionImportMapping FunctionImportName="BookData_Get" FunctionName="IdentityExDbModel.Store.BookData_Get">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="IdentityExDbModel.BookData_Get_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="UserCreated" ColumnName="UserCreated" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Author" ColumnName="Author" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="LastModified" ColumnName="LastModified" />
+                <ScalarProperty Name="UserLastModified" ColumnName="UserLastModified" />
+                <ScalarProperty Name="UserCreatedFirstName" ColumnName="UserCreatedFirstName" />
+                <ScalarProperty Name="UserCreatedLastName" ColumnName="UserCreatedLastName" />
+                <ScalarProperty Name="UserCreatedFullName" ColumnName="UserCreatedFullName" />
+                <ScalarProperty Name="UserCreatedEmail" ColumnName="UserCreatedEmail" />
+                <ScalarProperty Name="UserLastModifiedFirstName" ColumnName="UserLastModifiedFirstName" />
+                <ScalarProperty Name="UserLastModifiedLastName" ColumnName="UserLastModifiedLastName" />
+                <ScalarProperty Name="UserLastModifiedFullName" ColumnName="UserLastModifiedFullName" />
+                <ScalarProperty Name="UserLastModifiedEmail" ColumnName="UserLastModifiedEmail" />
+                <ScalarProperty Name="AuthorFullName" ColumnName="AuthorFullName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Books_Get" FunctionName="IdentityExDbModel.Store.Books_Get">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="IdentityExDbModel.Books_Get_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="UserCreated" ColumnName="UserCreated" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Author" ColumnName="Author" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="LastModified" ColumnName="LastModified" />
+                <ScalarProperty Name="UserLastModified" ColumnName="UserLastModified" />
+                <ScalarProperty Name="Description1" ColumnName="Description1" />
+                <ScalarProperty Name="UserCreatedEmail" ColumnName="UserCreatedEmail" />
+                <ScalarProperty Name="UserCreatedFirstName" ColumnName="UserCreatedFirstName" />
+                <ScalarProperty Name="UserCreatedLastName" ColumnName="UserCreatedLastName" />
+                <ScalarProperty Name="UserCreatedId" ColumnName="UserCreatedId" />
+                <ScalarProperty Name="UserCreatedFullName" ColumnName="UserCreatedFullName" />
+                <ScalarProperty Name="AuthorFullName" ColumnName="AuthorFullName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

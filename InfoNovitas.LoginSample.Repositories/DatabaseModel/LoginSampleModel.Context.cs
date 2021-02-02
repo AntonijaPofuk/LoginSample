@@ -160,5 +160,78 @@ namespace InfoNovitas.LoginSample.Repositories.DatabaseModel
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Users_Get_Result>("Users_Get");
         }
+    
+        public virtual int Book_Delete(Nullable<int> id, Nullable<int> userLastModified)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            var userLastModifiedParameter = userLastModified.HasValue ?
+                new ObjectParameter("UserLastModified", userLastModified) :
+                new ObjectParameter("UserLastModified", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Book_Delete", idParameter, userLastModifiedParameter);
+        }
+    
+        public virtual int Book_Insert(string title, Nullable<int> author, string description, Nullable<int> userCreated)
+        {
+            var titleParameter = title != null ?
+                new ObjectParameter("Title", title) :
+                new ObjectParameter("Title", typeof(string));
+    
+            var authorParameter = author.HasValue ?
+                new ObjectParameter("Author", author) :
+                new ObjectParameter("Author", typeof(int));
+    
+            var descriptionParameter = description != null ?
+                new ObjectParameter("Description", description) :
+                new ObjectParameter("Description", typeof(string));
+    
+            var userCreatedParameter = userCreated.HasValue ?
+                new ObjectParameter("UserCreated", userCreated) :
+                new ObjectParameter("UserCreated", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Book_Insert", titleParameter, authorParameter, descriptionParameter, userCreatedParameter);
+        }
+    
+        public virtual int Book_Save(Nullable<int> id, string title, Nullable<int> author, string description, Nullable<int> userLastModified)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            var titleParameter = title != null ?
+                new ObjectParameter("Title", title) :
+                new ObjectParameter("Title", typeof(string));
+    
+            var authorParameter = author.HasValue ?
+                new ObjectParameter("Author", author) :
+                new ObjectParameter("Author", typeof(int));
+    
+            var descriptionParameter = description != null ?
+                new ObjectParameter("Description", description) :
+                new ObjectParameter("Description", typeof(string));
+    
+            var userLastModifiedParameter = userLastModified.HasValue ?
+                new ObjectParameter("UserLastModified", userLastModified) :
+                new ObjectParameter("UserLastModified", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Book_Save", idParameter, titleParameter, authorParameter, descriptionParameter, userLastModifiedParameter);
+        }
+    
+        public virtual ObjectResult<BookData_Get_Result> BookData_Get(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<BookData_Get_Result>("BookData_Get", idParameter);
+        }
+    
+        public virtual ObjectResult<Books_Get_Result> Books_Get()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Books_Get_Result>("Books_Get");
+        }
     }
 }
