@@ -1,4 +1,4 @@
-﻿<h1 class="page-header">Uređivanje: {{book.title}} {{book.author}}</h1>
+﻿<h1 class="page-header">Uređivanje: {{book.title}} : {{book.author.id}}</h1>
 
 <form role="form" ng-submit="updateBook()" name="updateBookForm" id="updateBookForm" novalidate>
     <div class="form-group" ng-class="{'has-error':updateBookForm.title.$invalid && updateBookForm.title.$dirty}">
@@ -8,7 +8,7 @@
     </div>
     <div class="form-group" ng-class="{'has-error':updateBookForm.author.$invalid && updateBookForm.author.$dirty}">
         <label>Author:</label>
-        <input class="form-control" ng-model="book.author" name="author" required />
+        <input class="form-control" ng-model="book.author.id" name="author" required />
         <p class="help-block" ng-show="updateBookForm.author.$invalid && updateBookForm.author.$dirty">Ime je obavezno.</p>
     </div>
    

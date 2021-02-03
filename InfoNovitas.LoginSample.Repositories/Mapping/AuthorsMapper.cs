@@ -5,7 +5,7 @@ namespace InfoNovitas.LoginSample.Repositories.Mapping
 {
     public static class AuthorsMapper
     {
-
+        //Added for foreign key values
         public static Model.Authors.Author MapToAuthor(this DatabaseModel.Author model)
         {
             if (model == null)

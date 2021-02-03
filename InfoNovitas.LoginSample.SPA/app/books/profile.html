@@ -7,7 +7,7 @@
         <span ng-show="bookForm.title.$error.required">Naziv je obavezan.</span>
     </div>
     <label for="author">Pisac:</label>
-    <input required name="author" type="text" class="form-control" id="author" placeholder="Unesi pisca" [required="string" ] value={{book.author}} />
+    <input required name="author" type="text" class="form-control" id="author" placeholder="Unesi pisca" [required="string" ] value={{book.author.id}} />
     <div style="color:red" ng-show="bookForm.author.$dirty && bookForm.author.$invalid">
         <span ng-show="bookForm.author.$error.required">Pisac je obavezan.</span>
     </div>
