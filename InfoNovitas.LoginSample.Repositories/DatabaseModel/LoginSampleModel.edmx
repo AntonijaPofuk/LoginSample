@@ -24,7 +24,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Active" Type="bit" Nullable="false" />
           <Property Name="DateCreated" Type="datetimeoffset" Precision="7" Nullable="false" />
           <Property Name="UserCreated" Type="int" />
@@ -442,6 +442,7 @@
             <End Role="UserInfo" EntitySet="UserInfoes" />
             <End Role="Book" EntitySet="Books" />
           </AssociationSet>
+          <FunctionImport Name="ReturnRecords" />
           <FunctionImport Name="Book_Delete">
             <Parameter Name="Id" Mode="In" Type="Int32" />
             <Parameter Name="UserLastModified" Mode="In" Type="Int32" />
@@ -460,9 +461,8 @@
             <Parameter Name="UserLastModified" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="BookData_Get" ReturnType="Collection(IdentityExDbModel.BookData_Get_Result)">
-          <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="ReturnRecords" />
           <FunctionImport Name="Books_Get" ReturnType="Collection(IdentityExDbModel.Books_Get_Result)" />
         </EntityContainer>
         <ComplexType Name="Author_Get_Result">
@@ -761,6 +761,7 @@
           <Property Type="String" Name="Description" Nullable="true" MaxLength="2000" />
           <Property Type="DateTimeOffset" Name="LastModified" Nullable="true" />
           <Property Type="Int32" Name="UserLastModified" Nullable="true" />
+          <Property Type="String" Name="AuthorFullName" Nullable="true" MaxLength="101" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -948,6 +949,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="ReturnRecords" FunctionName="IdentityExDbModel.Store.ReturnRecords" />
           <FunctionImportMapping FunctionImportName="Book_Delete" FunctionName="IdentityExDbModel.Store.Book_Delete" />
           <FunctionImportMapping FunctionImportName="Book_Insert" FunctionName="IdentityExDbModel.Store.Book_Insert" />
           <FunctionImportMapping FunctionImportName="Book_Save" FunctionName="IdentityExDbModel.Store.Book_Save" />
@@ -975,7 +977,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="ReturnRecords" FunctionName="IdentityExDbModel.Store.ReturnRecords" />
           <FunctionImportMapping FunctionImportName="Books_Get" FunctionName="IdentityExDbModel.Store.Books_Get">
             <ResultMapping>
               <ComplexTypeMapping TypeName="IdentityExDbModel.Books_Get_Result">
@@ -988,6 +989,7 @@
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="LastModified" ColumnName="LastModified" />
                 <ScalarProperty Name="UserLastModified" ColumnName="UserLastModified" />
+                <ScalarProperty Name="AuthorFullName" ColumnName="AuthorFullName" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

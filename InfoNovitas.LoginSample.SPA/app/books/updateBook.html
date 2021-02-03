@@ -1,4 +1,4 @@
-﻿<h1 class="page-header">Uređivanje: {{book.title}} : {{book.author.id}}</h1>
+﻿<h1 class="page-header">Uređivanje: {{book.title}} : {{book.author.fullName}}</h1>
 
 <form role="form" ng-submit="updateBook()" name="updateBookForm" id="updateBookForm" novalidate>
     <div class="form-group" ng-class="{'has-error':updateBookForm.title.$invalid && updateBookForm.title.$dirty}">

@@ -161,6 +161,11 @@ namespace InfoNovitas.LoginSample.Repositories.DatabaseModel
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Users_Get_Result>("Users_Get");
         }
     
+        public virtual int ReturnRecords()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ReturnRecords");
+        }
+    
         public virtual int Book_Delete(Nullable<int> id, Nullable<int> userLastModified)
         {
             var idParameter = id.HasValue ?
@@ -227,11 +232,6 @@ namespace InfoNovitas.LoginSample.Repositories.DatabaseModel
                 new ObjectParameter("id", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<BookData_Get_Result>("BookData_Get", idParameter);
-        }
-    
-        public virtual int ReturnRecords()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ReturnRecords");
         }
     
         public virtual ObjectResult<Books_Get_Result> Books_Get()

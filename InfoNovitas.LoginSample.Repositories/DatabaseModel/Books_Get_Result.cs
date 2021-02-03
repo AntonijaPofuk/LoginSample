@@ -22,5 +22,6 @@ namespace InfoNovitas.LoginSample.Repositories.DatabaseModel
         public string Description { get; set; }
         public Nullable<System.DateTimeOffset> LastModified { get; set; }
         public Nullable<int> UserLastModified { get; set; }
+        public string AuthorFullName { get; set; }
     }
 }

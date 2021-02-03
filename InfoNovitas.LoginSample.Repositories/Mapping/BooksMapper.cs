@@ -50,7 +50,8 @@ namespace InfoNovitas.LoginSample.Repositories.Mapping
                 DateCreated = dbResult.DateCreated,
                 Author = new Model.Authors.Author()
                 {
-                    Id = dbResult.Author                
+                    Id = dbResult.Author,
+                    FullName = dbResult.AuthorFullName
                 },
                 UserCreated = new Model.Users.UserInfo()
                 {
