@@ -18,9 +18,11 @@ namespace InfoNovitas.LoginSample.Web.Api.Mapping
                 Id = view.Id,
                 Active = view.Active,
                 Title = view.Title,
-                Description = view.Description
-               
-             
+                Description = view.Description,
+                DateCreated = view.DateCreated,
+                UserCreated = view.UserCreated.MapToViewModel()
+
+
             };
         }
 
@@ -33,8 +35,11 @@ namespace InfoNovitas.LoginSample.Web.Api.Mapping
                 Id = viewModel.Id,
                 Active = viewModel.Active,           
                 Description = viewModel.Description,
-                Title = viewModel.Title
-             
+                Title = viewModel.Title,
+                DateCreated = viewModel.DateCreated,
+                UserCreated = viewModel.UserCreated.MapToView()
+
+
             };
         }
 

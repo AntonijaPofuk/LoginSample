@@ -21,8 +21,14 @@
                     <td><b>{{book.id}}</b></td>
                     <td>{{book.title}}</td>
                     <td>{{book.active}}</td>
-                    <td>{{author.description}}</td>
-                    
+                    <td>{{book.description}}</td>
+                    <td>{{book.dateCreated|date:'dd.MM.yyyy. HH:mm'}}</td>
+                    <td>{{book.userCreated.id}}</td>
+                    <td>
+                        <button type="button" class="btn btn-primary" ng-click="profile(book.id)">Profil</button>
+                        <button type="button" class="btn btn-default" ng-click="edit(book.id)">Uredi</button>
+                        <button type="button" class="btn btn-default" ng-click="delete(book.id)">Obriši</button>
+                    </td>
                 </tr>
             </tbody>
         </table>

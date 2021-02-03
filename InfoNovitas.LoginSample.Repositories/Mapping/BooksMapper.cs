@@ -1,7 +1,6 @@
 ﻿using InfoNovitas.LoginSample.Repositories.DatabaseModel;
 using System.Collections.Generic;
 using System.Linq;
-using Author = InfoNovitas.LoginSample.Model.Authors.Author;
 
 namespace InfoNovitas.LoginSample.Repositories.Mapping
 {
@@ -16,8 +15,15 @@ namespace InfoNovitas.LoginSample.Repositories.Mapping
                 Id = dbResult.Id,
                 Title = dbResult.Title,
                 Active = dbResult.Active,
-                Description = dbResult.Description
-              
+                Description = dbResult.Description,
+                DateCreated =  dbResult.DateCreated,
+                UserCreated = dbResult.UserCreated.HasValue ? new Model.Users.UserInfo()
+                {
+                    Id = dbResult.UserCreated.Value,
+                    FullName = dbResult.UserCreatedFullName
+
+                } : null
+
 
             };
         }
@@ -31,7 +37,14 @@ namespace InfoNovitas.LoginSample.Repositories.Mapping
                 Id = dbResult.Id,
                 Active = dbResult.Active,
                 Title = dbResult.Title,
-                Description = dbResult.Description              
+                Description = dbResult.Description,
+                DateCreated = dbResult.DateCreated,
+                UserCreated = dbResult.UserCreated.HasValue ? new Model.Users.UserInfo()
+                {
+                    Id = dbResult.UserCreated.Value
+
+                } : null
+
             };
         }    
     }
