@@ -12,13 +12,29 @@ namespace InfoNovitas.LoginSample.Repositories.Books
     {
         public int Add(Book item)
         {
-            throw new NotImplementedException();
+
+            using (var context = new IdentityExDbEntities())
+            {
+                return context.Book_Insert(item.Title, item.Author.Id, item.Description, item.UserCreated?.Id);
             }
+        }
 
         public bool Delete(Book item)
                 {
-            throw new NotImplementedException();
+            try
+            {
+                using (var context = new IdentityExDbEntities())
+                {
+                    context.Book_Delete(item.Id, item.UserLastModified?.Id);
+                    return true;
+                }
             }
+            catch (Exception e)
+            {
+                Console.WriteLine($"The exception is: '{e}'");
+                return false;
+            }
+        }
 
         public List<Model.Books.Book> FindAll()
         {
@@ -35,12 +51,20 @@ namespace InfoNovitas.LoginSample.Repositories.Books
 
         public Book FindBy(int key)
         {
-            throw new NotImplementedException();
+            using (var context = new IdentityExDbEntities())
+            {
+                return context.BookData_Get(key).SingleOrDefault().MapToModel();
+
+            }
         }
 
         public Book Save(Book item)
             {
-            throw new NotImplementedException();
+            using (var context = new IdentityExDbEntities())
+            {
+                context.Book_Save(item.Id, item.Title, item.Author.Id, item.Description, item.UserLastModified?.Id);
+                return item;
+            }
         }
     }
 }

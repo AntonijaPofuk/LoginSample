@@ -143,7 +143,6 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\BooksController.cs" />
     <Compile Include="Controllers\AuthorsController.cs" />
-    <Compile Include="Controllers\BooksController.cs" />
     <Compile Include="Controllers\UserInfoController.cs" />
     <Compile Include="Helpers\IdentityHelper.cs" />
     <Compile Include="LoginSampleModule.cs" />
