@@ -12,7 +12,6 @@ namespace InfoNovitas.LoginSample.Repositories.Books
     {
         public int Add(Book item)
         {
-
             using (var context = new IdentityExDbEntities())
             {
                 return context.Book_Insert(item.Title, item.Author.Id, item.Description, item.UserCreated?.Id);

@@ -2,22 +2,22 @@
 
 <form class="form-group" name="authorForm">
     <label for="authorname">Firstname:</label>
-    <input required name="authorname" type="text" class="form-control" id="authorname" placeholder="Enter first name" [required="string" ] value={{author.firstName}} />
+    <input readonly required name="authorname" type="text" class="form-control" id="authorname" placeholder="Enter first name" [required="string" ] value={{author.firstName}} />
     <div style="color:red" ng-show="authorForm.authorname.$dirty && authorForm.authorname.$invalid">
         <span ng-show="authorForm.authorname.$error.required">First name is required.</span>
     </div>
     <label for="authorlastname">Lastname:</label>
-    <input required name="authorlastname" type="text" class="form-control" id="bookauthor" placeholder="Enter last name" [required="string" ] value={{author.lastName}} />
+    <input readonly required name="authorlastname" type="text" class="form-control" id="bookauthor" placeholder="Enter last name" [required="string" ] value={{author.lastName}} />
     <div style="color:red" ng-show="authorForm.authorlastname.$dirty && authorForm.authorlastname.$invalid">
         <span ng-show="authorForm.authorlastname.$error.required">Last name is required.</span>
     </div>
     <label for="authordescription">Description:</label>
-    <input name="authordescription" type="text" class="form-control" id="authordescription" placeholder="Enter description" [required="string" ] value={{author.description}} />
+    <input readonly name="authordescription" type="text" class="form-control" id="authordescription" placeholder="Enter description" [required="string" ] value={{author.description}} />
     <label for="authornote">Note:</label>
-    <input name="authornote" type="text" class="form-control" id="authornote" placeholder="Enter note" [required="string" ] value={{author.note}} />
+    <input readonly name="authornote" type="text" class="form-control" id="authornote" placeholder="Enter note" [required="string" ] value={{author.note}} />
     <label for="userCreated">Kreirao:</label>
-    <input readonly name="usercreated" type="text" class="form-control" id="usercreated" [required="string" ] value={{author.userCreated.fullName}} />
+    <input readonly  name="usercreated" type="text" class="form-control" id="usercreated" [required="string" ] value={{author.userCreated.fullName}} />
     <label for="userCreated">Ažurirao:</label>
-    <input readonly name="usercreated" type="text" class="form-control" id="usercreated" [required="string" ] value={{author.userLastModified.fullName}}/>
+    <input readonly  name="usercreated" type="text" class="form-control" id="usercreated" [required="string" ] value={{author.userLastModified.fullName}}/>
 
 </form>
