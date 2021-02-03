@@ -5,6 +5,18 @@ namespace InfoNovitas.LoginSample.Repositories.Mapping
 {
     public static class AuthorsMapper
     {
+
+        public static Model.Authors.Author MapToAuthor(this DatabaseModel.Author model)
+        {
+            if (model == null)
+                return null;
+            return new Model.Authors.Author()
+            {
+                Id = model.Id,
+                FirstName = model.FirstName,
+                LastName = model.LastName
+            };
+        }
         public static Author MapToModel(this AuthorData_Get_Result dbResult)
         {
             if (dbResult == null)

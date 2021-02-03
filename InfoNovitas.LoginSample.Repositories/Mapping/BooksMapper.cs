@@ -17,6 +17,10 @@ namespace InfoNovitas.LoginSample.Repositories.Mapping
                 Active = dbResult.Active,
                 Description = dbResult.Description,
                 DateCreated =  dbResult.DateCreated,
+                Author =new Model.Authors.Author() 
+                {
+                    Id = dbResult.Author
+                },
                 UserCreated = dbResult.UserCreated.HasValue ? new Model.Users.UserInfo()
                 {
                     Id = dbResult.UserCreated.Value,
@@ -35,10 +39,15 @@ namespace InfoNovitas.LoginSample.Repositories.Mapping
             return new Model.Books.Book()
             {
                 Id = dbResult.Id,
-                Active = dbResult.Active,
+                Active = dbResult.Active,               
                 Title = dbResult.Title,
                 Description = dbResult.Description,
                 DateCreated = dbResult.DateCreated,
+                Author = new Model.Authors.Author()
+                {
+                    Id = dbResult.Author
+                
+                },
                 UserCreated = dbResult.UserCreated.HasValue ? new Model.Users.UserInfo()
                 {
                     Id = dbResult.UserCreated.Value

@@ -1,8 +1,6 @@
-﻿using FSharp.Data.Runtime.StructuralTypes;
-using InfoNovitas.LoginSample.Model.Authors;
+﻿using InfoNovitas.LoginSample.Model.Authors;
 using InfoNovitas.LoginSample.Model.Users;
 using System;
-using InfoNovitas.LoginSample.Model.Users;
 
 namespace InfoNovitas.LoginSample.Model.Books
 {
