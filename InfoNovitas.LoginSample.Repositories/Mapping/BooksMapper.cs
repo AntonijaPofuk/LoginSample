@@ -19,13 +19,13 @@ namespace InfoNovitas.LoginSample.Repositories.Mapping
                 DateCreated =  dbResult.DateCreated,
                 Author =new Model.Authors.Author() 
                 {
-                    Id = dbResult.Author
+                    Id = dbResult.Author,
+                    FullName = dbResult.AuthorFullName
                 },
                 UserCreated = dbResult.UserCreated.HasValue ? new Model.Users.UserInfo()
                 {
                     Id = dbResult.UserCreated.Value,
                     FullName = dbResult.UserCreatedFullName
-
                 } : null
 
 
@@ -45,13 +45,11 @@ namespace InfoNovitas.LoginSample.Repositories.Mapping
                 DateCreated = dbResult.DateCreated,
                 Author = new Model.Authors.Author()
                 {
-                    Id = dbResult.Author
-                
+                    Id = dbResult.Author                
                 },
                 UserCreated = dbResult.UserCreated.HasValue ? new Model.Users.UserInfo()
                 {
                     Id = dbResult.UserCreated.Value
-
                 } : null
 
             };

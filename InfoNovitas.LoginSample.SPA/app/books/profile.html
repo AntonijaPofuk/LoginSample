@@ -1,4 +1,4 @@
-﻿<h1 class="page-header">{{book.title}} {{book.author.id}}</h1>
+﻿<h1 class="page-header">{{book.title}}</h1>
 
 <form class="form-group" name="bookForm">
     <label for="bookname">Naziv:</label>
@@ -7,15 +7,15 @@
         <span ng-show="bookForm.title.$error.required">Naziv je obavezan.</span>
     </div>
     <label for="author">Pisac:</label>
-    <input required name="author" type="text" class="form-control" id="author" placeholder="Unesi pisca" [required="string" ] value={{book.author.id}} />
+    <input required name="author" type="text" class="form-control" id="author" placeholder="Unesi pisca" [required="string" ] value={{book.author.fullName}} />
     <div style="color:red" ng-show="bookForm.author.$dirty && bookForm.author.$invalid">
         <span ng-show="bookForm.author.$error.required">Pisac je obavezan.</span>
     </div>
-    <label for="bookdescription">Description:</label>
+    <label for="bookdescription">Opis:</label>
     <input name="bookdescription" type="text" class="form-control" id="bookdescription" placeholder="Unesi opis" [required="string" ] value={{book.description}} />   
     <label for="userCreated">Kreirao:</label>
     <input readonly name="usercreated" type="text" class="form-control" id="usercreated" [required="string" ] value={{book.userCreated.fullName}} />
-    <label for="userCreated">Ažurirao:</label>
+    <label for="userCreated">Zadnje ažurirao:</label>
     <input readonly name="usercreated" type="text" class="form-control" id="usercreated" [required="string" ] value={{book.userLastModified.fullName}}/>
 
 </form>

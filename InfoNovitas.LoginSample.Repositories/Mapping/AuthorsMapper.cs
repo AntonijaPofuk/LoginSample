@@ -14,7 +14,7 @@ namespace InfoNovitas.LoginSample.Repositories.Mapping
             {
                 Id = model.Id,
                 FirstName = model.FirstName,
-                LastName = model.LastName
+                LastName = model.LastName,
             };
         }
         public static Author MapToModel(this AuthorData_Get_Result dbResult)
@@ -59,7 +59,7 @@ namespace InfoNovitas.LoginSample.Repositories.Mapping
                 UserCreated = dbResult.UserCreated.HasValue ? new Model.Users.UserInfo()
                 {
                     Id = dbResult.UserCreated.Value
-             
+
                 } : null,
                 FirstName = dbResult.FirstName,
                 LastName = dbResult.LastName              

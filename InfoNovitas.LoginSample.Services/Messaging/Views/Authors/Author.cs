@@ -15,5 +15,6 @@ namespace InfoNovitas.LoginSample.Services.Messaging.Views.Authors
         public string Note { get; set; }
         public DateTimeOffset? LastModified { get; set; }
         public UserInfo UserLastModified { get; set; }
+        public string FullName { get; set; }
     }
 }

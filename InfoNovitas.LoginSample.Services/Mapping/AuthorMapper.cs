@@ -16,6 +16,18 @@ namespace InfoNovitas.LoginSample.Services.Mapping
             return Mapper.Map<Views.Authors.Author>(model);
         }
 
+        public static Model.Authors.Author MapToModel_FK(this Messaging.Views.Authors.Author view)
+        {
+            if (view == null)
+                return null;
+            return new Model.Authors.Author()
+            {
+                Id = view.Id,               
+                FirstName = view.FirstName,
+                LastName = view.LastName
+            };
+        }
+
         public static Author MapToModel(this Views.Authors.Author view)
         {
             return Mapper.Map<Author>(view);
