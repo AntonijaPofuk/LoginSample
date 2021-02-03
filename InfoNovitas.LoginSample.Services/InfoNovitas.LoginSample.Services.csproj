@@ -55,6 +55,8 @@
     <Compile Include="Mapping\AuthorMapper.cs" />
     <Compile Include="Mapping\BookMapper.cs" />
     <Compile Include="Mapping\UserMapper.cs" />
+    <Compile Include="Messaging\Books\DeleteBookRequest.cs" />
+    <Compile Include="Messaging\Books\DeleteBookResponse.cs" />
     <Compile Include="Messaging\Books\GetAllBooksRequest.cs" />
     <Compile Include="Messaging\Books\GetAllBooksResponse.cs" />
     <Compile Include="Messaging\Authors\DeleteAuthorRequest.cs" />
@@ -65,6 +67,10 @@
     <Compile Include="Messaging\Authors\GetAuthorResponse.cs" />
     <Compile Include="Messaging\Authors\SaveAuthorRequest.cs" />
     <Compile Include="Messaging\Authors\SaveAuthorResponse.cs" />
+    <Compile Include="Messaging\Books\GetBookRequest.cs" />
+    <Compile Include="Messaging\Books\GetBookResponse.cs" />
+    <Compile Include="Messaging\Books\SaveBookRequest.cs" />
+    <Compile Include="Messaging\Books\SaveBookResponse.cs" />
     <Compile Include="Messaging\Users\GetAllUsersRequest.cs" />
     <Compile Include="Messaging\Users\GetAllUsersResponse.cs" />
     <Compile Include="Messaging\Users\SaveUserRequest.cs" />
