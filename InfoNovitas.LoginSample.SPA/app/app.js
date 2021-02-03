@@ -178,7 +178,59 @@ loginApp.config([
                      });
                  }
              }
-         });       
+         })
+            .state('bookProfile', {
+                url: "/books/:id",
+                controller: "bookProfileCtrl",
+                templateUrl: "app/books/profile.html",
+                resolve: {
+                    loginRequired: loginRequired,
+                    books: function ($ocLazyLoad) {
+                        return $ocLazyLoad.load({
+                            name: "books",
+                            files: [
+                                "app/books/booksModule.js"
+                            ]
+                        });
+                    }
+                }
+            })
+            .state('newBook', {
+                url: "/book/new",
+                controller: "newBookCtrl",
+                templateUrl: "app/books/newBook.html",
+                cache: false,
+                resolve: {
+                    loginRequired: loginRequired,
+                    books: function ($ocLazyLoad) {
+                        return $ocLazyLoad.load({
+                            name: "books",
+                            files: [
+                                "app/books/booksModule.js"
+                            ]
+                        });
+                    }
+                }
+            })
+            .state('updateBook', {
+                url: "/book/update/:id",
+                controller: "updateBookCtrl",
+                templateUrl: "app/books/updateBook.html",
+                cache: false,
+                resolve: {
+                    loginRequired: loginRequired,
+                    books: function ($ocLazyLoad) {
+                        return $ocLazyLoad.load({
+                            name: "books",
+                            files: [
+                                "app/books/booksModule.js"
+                            ]
+                        });
+                    }
+                }
+            })
+
+            ;       
         $locationProvider.html5Mode(true);
     }
 ]);

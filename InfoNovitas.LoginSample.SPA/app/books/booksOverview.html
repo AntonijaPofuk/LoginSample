@@ -10,6 +10,7 @@
                     <th>Id</th>
                     <th>Naziv</th>
                     <th>Active</th>
+                    <th>Author</th>
                     <th>Opis</th>
                     <th>Datum kreiranja</th>
                     <th>Kreirao</th>
@@ -20,7 +21,8 @@
                 <tr ng-repeat="book in books">
                     <td><b>{{book.id}}</b></td>
                     <td>{{book.title}}</td>
-                    <td>{{book.active}}</td>
+                    <td>{{book.userCreated.id}}</td>
+                    <td>{{book.author.id}}</td>
                     <td>{{book.description}}</td>
                     <td>{{book.dateCreated|date:'dd.MM.yyyy. HH:mm'}}</td>
                     <td>{{book.userCreated.id}}</td>
