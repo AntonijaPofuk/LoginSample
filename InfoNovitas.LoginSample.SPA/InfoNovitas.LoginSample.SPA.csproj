@@ -122,6 +122,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.js" />
+    <Content Include="app\authors\controllers\authorsGridCtrl.js" />
     <Content Include="app\books\booksModule.js" />
     <Content Include="app\books\booksOverview.html" />
     <Content Include="app\authors\profile.html" />

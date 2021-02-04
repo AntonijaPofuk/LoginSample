@@ -16,9 +16,8 @@
             return $http.put(serviceBase + "api/authors/" + id, author);
         }
     })
-       
 
-    .controller('authorsOverviewCtrl', function ($scope, authorsSvc, $state) {
+    .controller('authorsOverviewCtrl', function ($http, $scope, authorsSvc, $state) {
         authorsSvc.getAuthors().then(function (result) {
             $scope.authors = result.data.authors;
         }, function () { });
@@ -27,6 +26,36 @@
             authorsSvc.deleteAuthor(id).then(function () {
                 $state.reload();
             });
+        }
+
+        $scope.mainGrid = {
+            dataSource: {
+                transport: {
+                    read: function (options) {
+                        $http.get(serviceBase + "api/authors")
+                            .then(function (result) {
+                                options.success(result.data.authors);
+                            }, function (error) {
+
+                            });
+                    },
+                },
+                pageSize: 5,
+                serverPaging: true,
+                serverSorting: true
+            },
+            sortable: true,
+            pageable: true,
+           
+            columns: [{
+                field: "firstName",
+                title: "First Name",
+                width: "120px"
+            }, {
+                field: "lastName",
+                title: "Last Name",
+                width: "120px"
+            }]
         }
 
         $scope.profile = function (id) {
