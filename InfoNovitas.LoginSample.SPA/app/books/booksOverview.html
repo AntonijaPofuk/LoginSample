@@ -3,40 +3,8 @@
 </script>
 <h1 class="page-header">Pregled knjiga</h1>
 <div class="container">
-    <div class="row">
-        <table class="table table-striped table-bordered table-hover">
-            <thead>
-                <tr>
-                    <th rowspan="2">Id</th>
-                    <th rowspan="2">Naziv</th>
-                    <th rowspan="2">Active</th>
-                    <th colspan="2">Author</th>
-                    <th rowspan="2">Opis</th>
-                    <th rowspan="2">Datum kreiranja</th>
-                    <th rowspan="2"></throwspan="2">
-                </tr>
-                <tr>
-                    <th>Id</th>
-                    <th>Author</th>                  
-                </tr>     
-            </thead>
-            <tbody>
-                <tr ng-repeat="book in books">
-                    <td><b>{{book.id}}</b></td>
-                    <td>{{book.title}}</td>
-                    <td>{{book.userCreated.id}}</td>
-                    <td> {{book.author.id}}</td>
-                    <td>{{book.author.fullName}}</td>
-                    <td>{{book.description}}</td>
-                    <td>{{book.dateCreated|date:'dd.MM.yyyy. HH:mm'}}</td>
-                    <td>
-                        <button type="button" class="btn btn-primary" ng-click="profile(book.id)">Profil</button>
-                        <button type="button" class="btn btn-default" ng-click="edit(book.id)">Uredi</button>
-                        <button type="button" class="btn btn-default" ng-click="delete(book.id)">Obriši</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+    <div class="row">       
+        <kendo-grid options="mainGrid"></kendo-grid>
     </div>
 </div>
 

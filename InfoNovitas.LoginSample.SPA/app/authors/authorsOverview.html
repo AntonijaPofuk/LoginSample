@@ -3,37 +3,7 @@
 </script>
 <h1 class="page-header">Pregled autora</h1>
 <div class="container">
-    <div class="row">
-        <!--
-      <table class="table table-striped table-bordered table-hover">
-          <thead>
-              <tr>
-                  <th>Id</th>
-                  <th>Ime</th>
-                  <th>Prezime</th>
-                  <th>Bilješka</th>
-                  <th>Opis</th>
-                  <th>Datum kreiranja</th>
-                  <th></th>
-              </tr>
-          </thead>
-          <tbody>
-              <tr ng-repeat="author in authors">
-                  <td><b>{{author.id}}</b></td>
-                  <td>{{author.firstName}}</td>
-                  <td>{{author.lastName}}</td>
-                  <td>{{author.note}}</td>
-                  <td>{{author.description}}</td>
-                  <td>{{author.dateCreated|date:'dd.MM.yyyy. HH:mm'}}</td>
-                  <td>
-                      <button type="button" class="btn btn-primary" ng-click="profile(author.id)">Profil</button>
-                      <button type="button" class="btn btn-default" ng-click="edit(author.id)">Uredi</button>
-                      <button type="button" class="btn btn-default" ng-click="delete(author.id)">Obriši</button>
-                  </td>
-              </tr>
-          </tbody>
-      </table>
-        -->
+    <div class="row">       
         <kendo-grid options="mainGrid"></kendo-grid>
    </div>
 </div>

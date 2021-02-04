@@ -1,23 +1,41 @@
 ﻿<h1 class="page-header">{{author.firstName}} {{author.lastName}}</h1>
-
-<form class="form-group" name="authorForm">
-    <label for="authorname">Firstname:</label>
-    <input readonly required name="authorname" type="text" class="form-control" id="authorname" placeholder="Enter first name" [required="string" ] value={{author.firstName}} />
-    <div style="color:red" ng-show="authorForm.authorname.$dirty && authorForm.authorname.$invalid">
-        <span ng-show="authorForm.authorname.$error.required">First name is required.</span>
-    </div>
-    <label for="authorlastname">Lastname:</label>
-    <input readonly required name="authorlastname" type="text" class="form-control" id="bookauthor" placeholder="Enter last name" [required="string" ] value={{author.lastName}} />
-    <div style="color:red" ng-show="authorForm.authorlastname.$dirty && authorForm.authorlastname.$invalid">
-        <span ng-show="authorForm.authorlastname.$error.required">Last name is required.</span>
-    </div>
-    <label for="authordescription">Description:</label>
-    <input readonly name="authordescription" type="text" class="form-control" id="authordescription" placeholder="Enter description" [required="string" ] value={{author.description}} />
-    <label for="authornote">Note:</label>
-    <input readonly name="authornote" type="text" class="form-control" id="authornote" placeholder="Enter note" [required="string" ] value={{author.note}} />
-    <label for="userCreated">Kreirao:</label>
-    <input readonly  name="usercreated" type="text" class="form-control" id="usercreated" [required="string" ] value={{author.userCreated.fullName}} />
-    <label for="userCreated">Ažurirao:</label>
-    <input readonly  name="usercreated" type="text" class="form-control" id="usercreated" [required="string" ] value={{author.userLastModified.fullName}}/>
-
+<form class="k-form k-form-vertical"">
+    <ul id="fieldlist">
+        <li class="k-form-field">
+            <label for="fullname" class="k-form-label">Ime</label>
+            <span class="k-form-field-wrap">
+                <input readonly class="form-control" ng-model="author.firstName" name="firstName" id="firstName" required />
+            </span>
+        </li>
+        <li class="k-form-field">
+            <label for="search" class="k-form-label">Prezime</label>
+            <span class="k-form-field-wrap">
+                <input readonly class="form-control" ng-model="author.lastName" name="lastName" id="lastName" required />
+            </span>
+        </li>
+        <li class="k-form-field">
+            <label for="fullname" class="k-form-label">Bilješka</label>
+            <span class="k-form-field-wrap">
+                <input  readonly class="form-control" ng-model="author.note" name="note" id="note" />
+            </span>
+        </li>
+        <li class="k-form-field">
+            <label for="search" class="k-form-label">Opis</label>
+            <span class="k-form-field-wrap">
+                <input readonly class="form-control" ng-model="author.description" name="description" id="description" />
+            </span>
+        </li>
+        <li class="k-form-field">
+            <span class="k-form-field-wrap">
+                <label for="userCreated">Kreirao</label>
+                <input readonly name="usercreated" type="text" class="form-control" id="usercreated" [required="string" ] value={{author.userCreated.fullName}} />
+            </span>
+        </li>
+        <li class="k-form-field">
+            <label for="search" class="k-form-label">Zadnje ažurirao</label>
+            <span class="k-form-field-wrap">
+                <input readonly name="usercreated" type="text" class="form-control" id="usercreated" [required="string" ] value={{author.userLastModified.fullName}} />
+            </span>
+        </li>
+        </ul>
 </form>

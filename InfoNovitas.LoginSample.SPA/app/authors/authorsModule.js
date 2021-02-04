@@ -26,12 +26,7 @@
             authorsSvc.deleteAuthor(id).then(function () {
                 $state.reload();
             });
-        }
-
-        $scope.onClick = function () {
-            alert("Button click");
-        };
-     
+        }      
 
         $scope.mainGrid = {
             dataSource: {
@@ -98,6 +93,38 @@
         })
     })
     .controller('newAuthorCtrl', function ($scope, authorsSvc, userInfoService, $state) {
+
+            
+                  $scope.data = [
+                      "12 Angry Men",
+                      "Il buono, il brutto, il cattivo.",
+                      "Inception",
+                      "One Flew Over the Cuckoo's Nest",
+                      "Pulp Fiction",
+                      "Schindler's List",
+                      "The Dark Knight",
+                      "The Godfather",
+                      "The Godfather: Part II",
+                      "The Shawshank Redemption"
+                  ];
+
+                  $scope.validationSummaryVisible = false;
+
+                  $scope.validate = function (event) {
+                      event.preventDefault();
+
+                      if ($scope.validator.validate()) {
+                          $scope.validationSummaryVisible = true;
+                          $scope.validationMessage = "Hooray! Your tickets has been booked!";
+                          $scope.validationClass = "success";
+                      } else {
+                          $scope.validationSummaryVisible = true;
+                          $scope.validationMessage = "Oops! There is invalid data in the form.";
+                          $scope.validationClass = "error";
+                      }
+                  }
+              
+
         $scope.author = {
             id: 0
         };
@@ -108,6 +135,7 @@
             });
         }
     })
+
     .controller('updateAuthorCtrl', function ($scope, authorsSvc, $state, $stateParams) {
         authorsSvc.getAuthor($stateParams.id).then(function (result) {
             $scope.author = result.data;

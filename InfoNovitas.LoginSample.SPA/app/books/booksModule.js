@@ -18,7 +18,7 @@
     })
        
 
-    .controller('booksOverviewCtrl', function ($scope, booksSvc, $state) {
+    .controller('booksOverviewCtrl', function ($scope, booksSvc, $state, $http) {
         booksSvc.getBooks().then(function (result) {
             $scope.books = result.data.books;
         }, function () { });
@@ -28,6 +28,54 @@
                 $state.reload();
             });
         }
+
+        $scope.mainGrid = {
+            dataSource: {
+                transport: {
+                    read: function (options) {
+                        $http.get(serviceBase + "api/books")
+                            .then(function (result) {
+                                options.success(result.data.books);
+                            }, function (error) {
+                                //add error handling
+                            });
+                    },
+                },
+                pageSize: 5
+            },
+            sortable: true,
+            pageable: true,
+            columns: [{
+                field: "title",
+                title: "Title",
+                width: "120px"
+            },
+            {
+                field: "author.fullName",
+                title: "Author",
+            },
+            
+            {
+                field: "description",
+                title: "Descripion",
+            },
+            {
+                field: "dateCreated",
+                title: "Date created",
+                format: "{0:dd/MM/yyyy}"
+
+            },
+            {
+                template: `
+                        <kendo-button class="k-primary" ng-click="profile(#: id#)">Profil</kendo-button>
+                        <kendo-button class="k-primary" ng-click="edit(#: id#)">Uredi</kendo-button>
+                        <kendo-button class="k-primary" ng-click="delete(#: id#)">Obriši</kendo-button>
+                    `,
+                headerTemplate: '<label> Edit </label>',
+                width: "200px"
+            }]
+        }
+
 
         $scope.profile = function (id) {
             $state.go('bookProfile', { id: id });
