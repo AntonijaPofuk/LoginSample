@@ -24,14 +24,14 @@ namespace InfoNovitas.LoginSample.Repositories.Mapping
                 },
                 UserCreated = new Model.Users.UserInfo()
                 {
-                    Id = dbResult.UserCreated.Value,
+                    Id = dbResult.UserCreated.GetValueOrDefault(),
                     FullName = dbResult.UserCreatedFullName
                 },
-                  UserLastModified = new Model.Users.UserInfo()
+                  UserLastModified = dbResult.UserLastModified.HasValue ?  new Model.Users.UserInfo()
                   {
                       Id = dbResult.UserLastModified.Value,
                     FullName = dbResult.UserLastModifiedFullName
-                  }
+                  }: null
 
 
             };
