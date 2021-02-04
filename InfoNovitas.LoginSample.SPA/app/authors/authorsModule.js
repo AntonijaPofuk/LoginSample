@@ -28,6 +28,11 @@
             });
         }
 
+        $scope.onClick = function () {
+            alert("Button click");
+        };
+     
+
         $scope.mainGrid = {
             dataSource: {
                 transport: {
@@ -36,28 +41,49 @@
                             .then(function (result) {
                                 options.success(result.data.authors);
                             }, function (error) {
-
+                                    //add error handling
                             });
                     },
                 },
-                pageSize: 5,
-                serverPaging: true,
-                serverSorting: true
+                pageSize: 5              
             },
             sortable: true,
             pageable: true,
-           
             columns: [{
                 field: "firstName",
                 title: "First Name",
                 width: "120px"
-            }, {
+            },
+                {
                 field: "lastName",
                 title: "Last Name",
-                width: "120px"
-            }]
+                },
+                {
+                    field: "note",
+                    title: "Note",
+                },
+                {
+                    field: "description",
+                    title: "Descripion",
+                },
+                {
+                    field: "dateCreated",                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+                    title: "Date created",
+                    format: "{0:dd/MM/yyyy}"
+
+                },    
+                {
+                    template: `
+                        <kendo-button class="k-primary" ng-click="profile(#: id#)">Profil</kendo-button>
+                        <kendo-button class="k-primary" ng-click="edit(#: id#)">Uredi</kendo-button>
+                        <kendo-button class="k-primary" ng-click="delete(#: id#)">Obriši</kendo-button>
+                    `,
+                    headerTemplate: '<label> Edit </label>',
+                    width: "200px"
+                }]
         }
 
+        
         $scope.profile = function (id) {
             $state.go('authorProfile', { id: id });
         }
