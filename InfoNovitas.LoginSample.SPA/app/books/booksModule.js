@@ -53,8 +53,7 @@
             {
                 field: "author.fullName",
                 title: "Author",
-            },
-            
+            },            
             {
                 field: "description",
                 title: "Descripion",
@@ -63,7 +62,6 @@
                 field: "dateCreated",
                 title: "Date created",
                 format: "{0:dd/MM/yyyy}"
-
             },
             {
                 template: `
@@ -75,7 +73,6 @@
                 width: "200px"
             }]
         }
-
 
         $scope.profile = function (id) {
             $state.go('bookProfile', { id: id });
