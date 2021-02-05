@@ -87,10 +87,23 @@
             $scope.book = result.data;
         })
     })
-    .controller('newBookCtrl', function ($scope, booksSvc, userInfoService, $state) {
+    .controller('newBookCtrl', function ($scope, booksSvc, userInfoService, $state, $http) {
         $scope.book = {
             id: 0
         };
+
+        $scope.authors = {
+            transport: {
+                read: function (options) {
+                    $http.get(serviceBase + "api/authors")
+                        .then(function (result) {
+                            options.success(result.data.authors);
+                        }, function (error) {
+                            //add error handling
+                        });
+                }
+            }
+        };       
 
         $scope.addNewBook = function () {
             booksSvc.createBook($scope.book).then(function () {
