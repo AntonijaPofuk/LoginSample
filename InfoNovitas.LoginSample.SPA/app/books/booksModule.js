@@ -107,15 +107,29 @@
         };       
 
         $scope.addNewBook = function () {
+           
             booksSvc.createBook($scope.book).then(function () {
                 $state.go('booksOverview');
             });
         }
     })
-    .controller('updateBookCtrl', function ($scope, booksSvc, $state, $stateParams) {
+    .controller('updateBookCtrl', function ($scope, booksSvc, $state, $stateParams, $http) {
         booksSvc.getBook($stateParams.id).then(function (result) {
             $scope.book = result.data;
         })
+        $scope.authors = {
+            transport: {
+                read: function (options) {
+                    $http.get(serviceBase + "api/authors")
+                        .then(function (result) {
+                            options.success(result.data.authors);
+                        }, function (error) {
+                            //add error handling
+
+                        });
+                }
+            }
+        };   
 
         $scope.updateBook = function () {
             booksSvc.updateBook($stateParams.id, $scope.book).then(function () {
