@@ -5,14 +5,11 @@
         <input class="form-control" ng-model="book.title" name="title" required />
     </div>
     <div class="form-group">
-        <label>Pisac:</label>
-        <!--
-        <input class="form-control" ng-model="book.author.id" name="author" required />
-           -->
+        <label>Pisac:</label>     
         <div>
             <select kendo-drop-down-list
                     k-ng-model="book.author.id"
-                    k-data-text-field="'firstName'"
+                    k-data-text-field="'fullName'"
                     k-value-primitive="true"
                     k-data-value-field="'id'"
                     k-data-source="authors"

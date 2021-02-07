@@ -62,7 +62,8 @@ namespace InfoNovitas.LoginSample.Repositories.Mapping
 
                 } : null,
                 FirstName = dbResult.FirstName,
-                LastName = dbResult.LastName              
+                LastName = dbResult.LastName,
+                FullName = dbResult.FirstName + ' ' + dbResult.LastName
             };
         }    
     }

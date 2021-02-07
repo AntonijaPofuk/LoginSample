@@ -100,6 +100,7 @@
                             options.success(result.data.authors);
                         }, function (error) {
                             //add error handling
+                            
                         });
                 }
             }
