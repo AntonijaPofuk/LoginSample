@@ -81,7 +81,70 @@
         $scope.edit = function (id) {
             $state.go('updateBook', { id: id });
         }
+
+        var grid = $("#grid").kendoGrid({
+            dataSource: {
+                transport: {
+                    read: function (options) {
+                        $http.get(serviceBase + "api/books")
+                            .then(function (result) {
+                                options.success(result.data.books);
+                            }, function (error) {
+                                //add error handling
+                            });
+                    },
+                },
+                pageSize: 5
+            },
+            toolbar: kendo.template($("#template").html()),
+            height: 550,
+            sortable: true,
+            columns: [
+                { field: "id", title: "id", width: 100 },
+                { field: "author.fullName", title: "author", width: 100 },
+                { field: "title", title: "title", width: 100 }               
+            ]
+        });
+        var dropDown = grid.find("#category").kendoDropDownList({
+            dataTextField: "fullName",
+            dataValueField: "id",
+            autoBind: false,
+            optionLabel: "All",
+            dataSource: {
+                transport: {
+                    read: function (options) {
+                        $http.get(serviceBase + "api/authors")
+                            .then(function (result) {
+                                options.success(result.data.authors);
+                            }, function (error) {
+                                //add error handling
+
+                            });
+                    }
+                }
+            },
+            change: function () {
+                var value = this.value();
+                if (value) {
+                    grid.data("kendoGrid").dataSource.filter({
+                        field: "author.id",
+                        operator: "eq",
+                        value: parseInt(value)
+                    });
+                } else {
+                    grid.data("kendoGrid").dataSource.filter({});
+                }
+            }
+        });
+
+        grid.find(".k-grid-toolbar").on("click", ".k-pager-refresh", function (e) {
+            e.preventDefault();
+            grid.data("kendoGrid").dataSource.read();
+        });
+
     })
+
+
     .controller('bookProfileCtrl', function ($scope, booksSvc, $state, $stateParams) {
         booksSvc.getBook($stateParams.id).then(function (result) {
             $scope.book = result.data;

@@ -1,10 +1,24 @@
 ﻿<script>
-    console.log("LOCALHOST: " + serviceBase + "api/books");   
+    console.log("LOCALHOST: " + serviceBase + "api/books");
 </script>
 <h1 class="page-header">Pregled knjiga</h1>
 <div class="container">
-    <div class="row">       
+    <div class="row">
         <kendo-grid options="mainGrid"></kendo-grid>
     </div>
 </div>
+
+<div id="example">
+    <div id="grid"></div>
+
+    <script type="text/x-kendo-template" id="template">
+        <div class="refreshBtnContainer">
+            <a href="\\#" class="k-pager-refresh k-link k-button k-button-icon" title="Refresh"><span class="k-icon k-i-reload"></span></a>
+        </div>
+        <div class="toolbar">
+            <label class="category-label" for="category">Show products by category:</label>
+            <input type="search" id="category" style="width: 150px"/>
+        </div>
+    </script>
+    </div>
 
