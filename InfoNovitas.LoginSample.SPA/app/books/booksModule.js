@@ -1,4 +1,9 @@
-﻿angular.module('books', ['kendo.directives'])
+﻿
+function generateObjectivesTemplate(id) {
+    return '<span>' + id + ' </span>';    
+}
+
+angular.module('books', ['kendo.directives'])
     .service('booksSvc', function ($http) {
         this.getBooks = function () {
             return $http.get(serviceBase + "api/books");
@@ -16,7 +21,6 @@
             return $http.put(serviceBase + "api/books/" + id, book);
         }
     })
-       
 
     .controller('booksOverviewCtrl', function ($scope, booksSvc, $state, $http) {
         booksSvc.getBooks().then(function (result) {
@@ -28,8 +32,16 @@
                 $state.reload();
             });
         }
+        $scope.profile = function (id) {
+            $state.go('bookProfile', { id: id });
+        }
 
-        $scope.mainGrid = {
+        $scope.edit = function (id) {
+            $state.go('updateBook', { id: id });
+        }
+
+
+        $scope.mainGrid = {       
             dataSource: {
                 transport: {
                     read: function (options) {
@@ -72,15 +84,7 @@
                 headerTemplate: '<label> Edit </label>',
                 width: "200px"
             }]
-        }
-
-        $scope.profile = function (id) {
-            $state.go('bookProfile', { id: id });
-        }
-
-        $scope.edit = function (id) {
-            $state.go('updateBook', { id: id });
-        }
+        }      
 
         var grid = $("#grid").kendoGrid({
             dataSource: {
@@ -98,13 +102,59 @@
             },
             toolbar: kendo.template($("#template").html()),
             height: 550,
+            groupable: true,
             sortable: true,
+            pageable: {
+                refresh: true,
+                pageSizes: true,
+                buttonCount: 5,
+            },
             columns: [
-                { field: "id", title: "id", width: 100 },
-                { field: "author.fullName", title: "author", width: 100 },
-                { field: "title", title: "title", width: 100 }               
-            ]
+                {
+                    field: "id",
+                    title: "Id"
+                },
+                {
+                    field: "author.fullName",
+                    title: "Author"
+                },
+                {
+                    field: "title",
+                    title: "Title"
+                },
+                {
+                    field: "description",
+                    title: "Descripion",
+                },
+                {
+                    field: "dateCreated",
+                    title: "Date created",
+                    format: "{0:dd/MM/yyyy}"
+                },            
+                {
+                    field: null,
+                    template: '#= generateObjectivesTemplate(data.id) #'
+                }, 
+                {
+                    field: "Click me",
+                    template: function (id) {
+                        $state.go('bookProfile', { id: 1 });
+                    },
+                    headerTemplate: '<label> Edit </label>',
+                    width: "200px"
+                },
+                {
+                command: {
+                    name: "edit",
+                    text: "Details"
+                }
+                 }],
+                editable: {
+                mode: "popup",
+                template: kendo.template($("#templateEdit").html())
+            }     
         });
+
         var dropDown = grid.find("#category").kendoDropDownList({
             dataTextField: "fullName",
             dataValueField: "id",
@@ -118,7 +168,6 @@
                                 options.success(result.data.authors);
                             }, function (error) {
                                 //add error handling
-
                             });
                     }
                 }
@@ -141,9 +190,7 @@
             e.preventDefault();
             grid.data("kendoGrid").dataSource.read();
         });
-
     })
-
 
     .controller('bookProfileCtrl', function ($scope, booksSvc, $state, $stateParams) {
         booksSvc.getBook($stateParams.id).then(function (result) {
@@ -200,3 +247,5 @@
             });
         }
     });
+
+
