@@ -1,5 +1,6 @@
 ﻿function generateObjectivesTemplate(id) {
-    return '<span>' + id + ' </span>';    }
+    return '<span>' + id + ' </span>';
+}
 
 angular.module('books', ['kendo.directives'])
     .service('booksSvc', function ($http) {
@@ -25,7 +26,7 @@ angular.module('books', ['kendo.directives'])
             $scope.books = result.data.books;
         }, function () { });
 
-       $scope.delete = function (id) {
+        $scope.delete = function (id) {
             booksSvc.deleteBook(id).then(function () {
                 $state.reload();
             });
@@ -53,7 +54,7 @@ angular.module('books', ['kendo.directives'])
                 pageSize: 5
             },
             toolbar: //dropDown and search
-                [{ template: kendo.template($("#template").html())}],
+                [{ template: kendo.template($("#template").html()) }],
             height: 550,
             filterable: {
                 mode: "row"
@@ -81,7 +82,7 @@ angular.module('books', ['kendo.directives'])
                         }
                     },
                     stickable: true
-                },               
+                },
                 {
                     field: "title",
                     title: "Title",
@@ -108,31 +109,48 @@ angular.module('books', ['kendo.directives'])
                     title: "Date created",
                     format: "{0:MM/dd/yyyy}",
                     stickable: true
-                },            
+                },
                 {
                     field: null,
                     template: '#= generateObjectivesTemplate(data.id) #',
                     stickable: true
-
-                },  
-                {
-                    command:{
-                        name: "Details",
-                        click: function (e, data) {
-                            $state.go('bookProfile', { id: 2});
-                        }                       
-                    },
                 },
                 {
-                command: {
-                    name: "edit",
-                    text: "Details"
-                }
-                 }],
-                editable: {
-                    mode: "popup",
-                    template: kendo.template($("#templateEdit").html())
-            }     
+                    command: [
+                        {
+                            name: "Edit",
+                            text: "Edit",
+                            click: function (e) {
+                                var tr = $(e.target).closest("tr"); // get the current table row (tr)                            
+                                var data = this.dataItem(tr); // get the data bound to the current table row
+                                console.log("Details for: " + data.id);
+                                $state.go('updateBook', { id: data.id });
+                            }
+                        },
+                        {
+                            name: "Delete",
+                            text: "Delete",
+                            click: function (e) {
+                                var tr = $(e.target).closest("tr");
+                                var data = this.dataItem(tr);
+                                console.log("Details for: " + data.id);
+                                booksSvc.deleteBook(data.id).then(function () {
+                                    $state.reload();
+                                });
+                            }
+                        }
+                    ]
+                },
+                {
+                    command: {
+                        name: "edit",
+                        text: "Details"
+                    }
+                }],
+            editable: {
+                mode: "popup",
+                template: kendo.template($("#templateEdit").html())
+            }
         });
 
         var dropDown = grid.find("#category").kendoDropDownList({
@@ -191,13 +209,13 @@ angular.module('books', ['kendo.directives'])
                             options.success(result.data.authors);
                         }, function (error) {
                             //add error handling
-                            
+
                         });
                 }
             }
-        };       
+        };
 
-        $scope.addNewBook = function () {           
+        $scope.addNewBook = function () {
             booksSvc.createBook($scope.book).then(function () {
                 $state.go('booksOverview');
             });
@@ -219,7 +237,7 @@ angular.module('books', ['kendo.directives'])
                         });
                 }
             }
-        };   
+        };
 
         $scope.updateBook = function () {
             booksSvc.updateBook($stateParams.id, $scope.book).then(function () {
