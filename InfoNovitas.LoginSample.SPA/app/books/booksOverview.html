@@ -2,15 +2,11 @@
     console.log("LOCALHOST: " + serviceBase + "api/books");
 </script>
 <h1 class="page-header">Pregled knjiga</h1>
-<div class="container">
-    <div class="row">
-        <kendo-grid options="mainGrid"></kendo-grid>
-    </div>
-</div>
 <!--dropdown menu-->
-<div id="example">
+<div class="container" id="example">
     <div id="grid"></div>
-    <script type="text/x-kendo-template" id="template">
+    <!-- text/x-kendo-template-->
+    <script type="text/html" id="template">
               <div class="refreshBtnContainer">
                   <a href="\\#" class="k-pager-refresh k-link k-button k-button-icon" title="Refresh"><span class="k-icon k-i-reload"></span></a>
               </div>
@@ -27,47 +23,47 @@
     </script>
 </div>
 
-<!--pop up-->
-<script type="text/x-kendo-template" id="templateEdit">
+<!--pop up details-->
+<script type="text/html" id="templateEdit">
         <form class="k-form k-form-vertical">
-        <ul id="fieldlist">
-        <li class="k-form-field">
-                <label for="id" class="k-form-label">Id</label>
-                <span class="k-form-field-wrap">
-               <input readonly class="form-control" k-data-source="id"  data-bind="value: id" name="id" id="id"  />
-                </span>
-            </li>
-             <li class="k-form-field">
-                <label for="fullname" class="k-form-label">Naziv</label>
-                <span class="k-form-field-wrap">
-                    <input readonly class="form-control" k-data-source="title" data-bind="value: title" name="title" id="title"  />
-                </span>
-            </li>
-            <li class="k-form-field">
-                <label for="search" class="k-form-label">Autor</label>
-                <span class="k-form-field-wrap">
-                    <input readonly class="form-control" k-data-source="author.fullName" data-bind="value: author.fullName" name="author" id="author"  />
-                </span>
-            </li>
-            <li class="k-form-field">
-                <label for="search" class="k-form-label">Opis</label>
-                <span class="k-form-field-wrap">
-                    <input readonly class="form-control" ng-model="book.description" name="description" id="description" />
-                </span>
-            </li>
-            <li class="k-form-field">
-                <span class="k-form-field-wrap">
-                    <label for="userCreated">Kreirao</label>
-                    <input readonly name="usercreated" type="text" class="form-control" [required="string" ] k-data-source="userCreated.id" data-bind="value: userCreated.id" />
-                </span>
-            </li>
-            <li class="k-form-field">
-                <label for="search" class="k-form-label">Zadnje ažurirao</label>
-                <span class="k-form-field-wrap">
-                    <input readonly name="userlastmodified" type="text" class="form-control" [required="string" ] k-data-source="userLastModified" data-bind="value: userLastModified" />
-                </span>
-            </li>
-        </ul>
+            <ul id="fieldlist">
+                <li class="k-form-field">
+                    <label for="id" class="k-form-label">Id</label>
+                    <span class="k-form-field-wrap">
+                        <input readonly class="form-control" k-data-source="id" data-bind="value: id" name="id" id="id" />
+                    </span>
+                </li>
+                <li class="k-form-field">
+                    <label for="fullname" class="k-form-label">Naziv</label>
+                    <span class="k-form-field-wrap">
+                        <input readonly class="form-control" k-data-source="title" data-bind="value: title" name="title" id="title" />
+                    </span>
+                </li>
+                <li class="k-form-field">
+                    <label for="search" class="k-form-label">Autor</label>
+                    <span class="k-form-field-wrap">
+                        <input readonly class="form-control" k-data-source="author.fullName" data-bind="value: author.fullName" name="author" id="author" />
+                    </span>
+                </li>
+                <li class="k-form-field">
+                    <label for="search" class="k-form-label">Opis</label>
+                    <span class="k-form-field-wrap">
+                        <input readonly class="form-control" ng-model="book.description" name="description" id="description" />
+                    </span>
+                </li>
+                <li class="k-form-field">
+                    <span class="k-form-field-wrap">
+                        <label for="userCreated">Kreirao</label>
+                        <input readonly name="usercreated" type="text" class="form-control" k-data-source="userCreated.fullName" data-bind="value: userCreated.fullName" />
+                    </span>
+                </li>               
+                <li class="k-form-field">
+                    <label for="userlastmodified" class="k-form-label">Zadnje ažurirao</label>
+                    <span class="k-form-field-wrap">
+                        <input readonly name="userlastmodified" type="text" class="form-control" k-data-source="userLastModified.fullName" data-bind="value: userLastModified.fullName" />
+                    </span>
+                </li>
+            </ul>
     </form>
 </script>
 

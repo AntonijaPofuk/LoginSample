@@ -22,18 +22,16 @@ namespace InfoNovitas.LoginSample.Repositories.Mapping
                     Id = dbResult.Author,
                     FullName = dbResult.AuthorFullName
                 },
-                UserCreated = new Model.Users.UserInfo()
+                UserCreated = dbResult.UserCreated.HasValue ? new Model.Users.UserInfo()
                 {
                     Id = dbResult.UserCreated.GetValueOrDefault(),
                     FullName = dbResult.UserCreatedFullName
-                },
+                }:null,
                   UserLastModified = dbResult.UserLastModified.HasValue ?  new Model.Users.UserInfo()
                   {
                       Id = dbResult.UserLastModified.Value,
-                    FullName = dbResult.UserLastModifiedFullName
+                      FullName = dbResult.UserLastModifiedFullName
                   }: null
-
-
             };
         }
 
@@ -53,11 +51,17 @@ namespace InfoNovitas.LoginSample.Repositories.Mapping
                     Id = dbResult.Author,
                     FullName = dbResult.AuthorFullName
                 },
-                UserCreated = new Model.Users.UserInfo()
+                UserCreated = dbResult.UserCreated.HasValue ? new Model.Users.UserInfo()
                 {
-                    Id = dbResult.UserCreated.Value
-                }
-                
+                    Id = dbResult.UserCreated.GetValueOrDefault(),
+                    FullName = dbResult.UserCreatedFullName
+                } : null,
+                UserLastModified = dbResult.UserLastModified.HasValue ? new Model.Users.UserInfo()
+                {
+                    Id = dbResult.UserLastModified.Value,
+                    FullName = dbResult.UseLastModifiedFullName
+                } : null
+
 
             };
         }    

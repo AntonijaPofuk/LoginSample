@@ -461,7 +461,7 @@
             <Parameter Name="UserLastModified" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="BookData_Get" ReturnType="Collection(IdentityExDbModel.BookData_Get_Result)">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Books_Get" ReturnType="Collection(IdentityExDbModel.Books_Get_Result)" />
         </EntityContainer>
@@ -762,6 +762,8 @@
           <Property Type="DateTimeOffset" Name="LastModified" Nullable="true" />
           <Property Type="Int32" Name="UserLastModified" Nullable="true" />
           <Property Type="String" Name="AuthorFullName" Nullable="true" MaxLength="101" />
+          <Property Type="String" Name="UserCreatedFullName" Nullable="true" MaxLength="101" />
+          <Property Type="String" Name="UseLastModifiedFullName" Nullable="true" MaxLength="101" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -990,6 +992,8 @@
                 <ScalarProperty Name="LastModified" ColumnName="LastModified" />
                 <ScalarProperty Name="UserLastModified" ColumnName="UserLastModified" />
                 <ScalarProperty Name="AuthorFullName" ColumnName="AuthorFullName" />
+                <ScalarProperty Name="UserCreatedFullName" ColumnName="UserCreatedFullName" />
+                <ScalarProperty Name="UseLastModifiedFullName" ColumnName="UseLastModifiedFullName" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
