@@ -104,6 +104,9 @@ angular.module('books', ['kendo.directives'])
             toolbar: 
                 [{ template: kendo.template($("#template").html()) }],
             height: 550,
+            filterable: {
+                mode: "row"
+            },
             groupable: true,
             sortable: true,
             pageable: {
@@ -118,20 +121,38 @@ angular.module('books', ['kendo.directives'])
                 },
                 {
                     field: "author.fullName",
-                    title: "Author"
+                    title: "Author",
+                    filterable: {
+                        cell: {
+                            operator: "contains",
+                            suggestionOperator: "contains"
+                        }
+                    }
                 },
                 {
                     field: "title",
-                    title: "Title"
+                    title: "Title",
+                    filterable: {
+                        cell: {
+                            operator: "contains",
+                            suggestionOperator: "contains"
+                        }
+                    }
                 },
                 {
                     field: "description",
                     title: "Descripion",
+                    filterable: {
+                        cell: {
+                            operator: "contains",
+                            suggestionOperator: "contains"
+                        }
+                    }
                 },
                 {
                     field: "dateCreated",
                     title: "Date created",
-                    format: "{0:dd/MM/yyyy}"
+                    format: "{0:MM/dd/yyyy}"
                 },            
                 {
                     field: null,
