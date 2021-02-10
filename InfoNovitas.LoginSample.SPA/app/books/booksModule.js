@@ -55,6 +55,7 @@ angular.module('books', ['kendo.directives'])
                 },
                 pageSize: 5
             },
+            toolbar: ["search"],
             sortable: true,
             pageable: true,
             columns: [{
@@ -100,7 +101,8 @@ angular.module('books', ['kendo.directives'])
                 },
                 pageSize: 5
             },
-            toolbar: kendo.template($("#template").html()),
+            toolbar: 
+                [{ template: kendo.template($("#template").html()) }],
             height: 550,
             groupable: true,
             sortable: true,
@@ -136,12 +138,12 @@ angular.module('books', ['kendo.directives'])
                     template: '#= generateObjectivesTemplate(data.id) #'
                 },  
                 {
-                    command: [{
+                    command:{
                         name: "Details",
-                        click: function (e, id) {
-                            $state.go('bookProfile', { id: 2 });
+                        click: function (e, data) {
+                            $state.go('bookProfile', { id: 2});
                         }                       
-                    }]
+                    }
                 },
                 {
                 command: {

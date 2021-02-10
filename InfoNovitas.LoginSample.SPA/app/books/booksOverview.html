@@ -11,13 +11,19 @@
 <div id="example">
     <div id="grid"></div>
     <script type="text/x-kendo-template" id="template">
-        <div class="refreshBtnContainer">
-            <a href="\\#" class="k-pager-refresh k-link k-button k-button-icon" title="Refresh"><span class="k-icon k-i-reload"></span></a>
-        </div>
-        <div class="toolbar">
-            <label class="category-label" for="category">Show books by author:</label>
-            <input type="search" id="category" style="width: 150px"/>
-        </div>
+              <div class="refreshBtnContainer">
+                  <a href="\\#" class="k-pager-refresh k-link k-button k-button-icon" title="Refresh"><span class="k-icon k-i-reload"></span></a>
+              </div>
+              <div class="toolbar">
+                  <label class="category-label" for="category">Show books by author:</label>
+                  <input type="search" id="category" style="width: 150px"/>
+              </div>
+              <span class="k-textbox k-grid-search k-display-flex">
+          <input autocomplete="off" placeholder="Search..." title="Search..." class="k-input">
+        <span class="k-input-icon">
+          <span class="k-icon k-i-search"></span>
+        </span>
+        </span>
     </script>
 </div>
 
