@@ -77,7 +77,6 @@
                     width: "200px"
                 }]
         }
-
         
         $scope.profile = function (id) {
             $state.go('authorProfile', { id: id });

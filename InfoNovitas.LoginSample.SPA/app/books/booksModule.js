@@ -70,7 +70,8 @@ angular.module('books', ['kendo.directives'])
                 {
                     field: "id",
                     title: "Id",
-                    stickable: true
+                    stickable: true,
+                    width: "50px"
                 },
                 {
                     field: "author.fullName",
@@ -107,14 +108,9 @@ angular.module('books', ['kendo.directives'])
                 {
                     field: "dateCreated",
                     title: "Date created",
-                    format: "{0:MM/dd/yyyy}",
+                    template: '#= kendo.toString(dateCreated,"MM/dd/yyyy") #',
                     stickable: true
-                },
-                {
-                    field: null,
-                    template: '#= generateObjectivesTemplate(data.id) #',
-                    stickable: true
-                },
+                },                
                 {
                     command: [
                         {
@@ -129,7 +125,8 @@ angular.module('books', ['kendo.directives'])
                         },
                         {
                             name: "Delete",
-                            text: "Delete",
+                            text: "<span style='color: red;'>Delete</span>",
+                            className: "btn-destroy",
                             click: function (e) {
                                 var tr = $(e.target).closest("tr");
                                 var data = this.dataItem(tr);
@@ -138,15 +135,20 @@ angular.module('books', ['kendo.directives'])
                                     $state.reload();
                                 });
                             }
-                        }
-                    ]
-                },
-                {
-                    command: {
-                        name: "edit",
-                        text: "Details"
-                    }
-                }],
+                        },
+                        {
+                            name: "Details",
+                            text: "<span>Details</span>",
+                            click: function (e) {
+                                var tr = $(e.target).closest("tr");
+                                var data = this.dataItem(tr);
+                                console.log("Details for: " + data.id);
+                                $state.go('bookProfile', { id: data.id });
+                            }
+                        },
+                    ], width: "250px"
+                }
+               ],
             editable: {
                 mode: "popup",
                 template: kendo.template($("#templateEdit").html())
