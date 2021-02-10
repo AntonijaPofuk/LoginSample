@@ -134,14 +134,14 @@ angular.module('books', ['kendo.directives'])
                 {
                     field: null,
                     template: '#= generateObjectivesTemplate(data.id) #'
-                }, 
+                },  
                 {
-                    field: "Click me",
-                    template: function (id) {
-                        $state.go('bookProfile', { id: 1 });
-                    },
-                    headerTemplate: '<label> Edit </label>',
-                    width: "200px"
+                    command: [{
+                        name: "Details",
+                        click: function (e, id) {
+                            $state.go('bookProfile', { id: 2 });
+                        }                       
+                    }]
                 },
                 {
                 command: {
